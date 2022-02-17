@@ -8,7 +8,7 @@ package lostests;
 
 /**
  *
- * @author gabri
+ * @author rafa
  */
 public class Persona {
     private int edad;

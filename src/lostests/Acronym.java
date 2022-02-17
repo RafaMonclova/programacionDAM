@@ -7,7 +7,7 @@ public class Acronym {
     Acronym(String phrase) {
          this.phrase = phrase;
     }
-Acronym() {
+    Acronym() {
          this.phrase = "";
     }
 

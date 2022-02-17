@@ -10,7 +10,7 @@ package lostests;
  * The Calculator class provides static methods for
  *  arithmetic operations on two integers.
  */
-public class Calculator {
+    public class Calculator {
    public static int add(int number1, int number2) {
       return number1 + number2;
    }

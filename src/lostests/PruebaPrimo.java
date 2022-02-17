@@ -4,7 +4,7 @@ package lostests;
 import java.util.Scanner;
 public class PruebaPrimo {  
 
-	//un nÃºmero primo es un nÃºmero natural mayor que 1 que 
+	//un numero primo es un nÃºmero natural mayor que 1 que 
 	//tiene Ãºnicamente dos divisores distintos: el mismo y el 1
 	public boolean esPrimo(String numero){
 	
