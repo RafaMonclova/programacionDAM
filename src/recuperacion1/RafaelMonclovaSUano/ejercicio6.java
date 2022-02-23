@@ -1,7 +1,7 @@
 /*
 RAFAEL MONCLOVA SUANO
  */
-package recuperacion1;
+package recuperacion1.RafaelMonclovaSUano;
 import java.util.*;
 
 public class ejercicio6 {
