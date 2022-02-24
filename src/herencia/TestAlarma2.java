@@ -1,8 +1,6 @@
 
 package herencia;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.Timer;
+
 /**
  *
  * @author rafa

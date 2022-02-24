@@ -18,6 +18,13 @@ public class RelojAlarma{
         this.minutoAlarma = 0;
     }
     
+    public RelojAlarma(int horaAlarma, int minutoAlarma, int hora, int minuto, int segundo){
+        
+        reloj = new Reloj(hora,minuto,segundo);
+        this.horaAlarma = horaAlarma;
+        this.minutoAlarma = minutoAlarma;
+    }
+    
     public void setTime(int hora, int minuto, int segundo){
         
         reloj.setTime(hora, minuto, segundo);

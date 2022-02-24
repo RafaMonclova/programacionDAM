@@ -17,6 +17,12 @@ public class Reloj {
         this.segundo = 0;
     }
     
+    public Reloj(int hora, int minuto, int segundo){
+        this.hora = hora;
+        this.minuto = minuto;
+        this.segundo = segundo;
+    }
+    
     public void setTime(int hora, int minuto, int segundo){
         
         this.hora = hora;
@@ -36,12 +42,12 @@ public class Reloj {
         while (segundo >= 3600){
             hora++;
             segundo = segundo - 3600;
-    }
+        }
 
         while (segundo >= 59){
             minuto++;
             segundo = segundo - 60;
-    }
+        }
     
     segundo += 1;
         
