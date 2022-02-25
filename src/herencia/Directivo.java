@@ -30,8 +30,9 @@ public class Directivo extends Empleado{
         return super.calcularSueldo() + plusDireccion + dietas;
     }
     
+    @Override
     public void imprimirNomina(){
-        
+        super.imprimirNomina();
         System.out.println("PLUS DIRECCIÓN: "+plusDireccion);
         System.out.println("DIETAS: "+dietas);
         System.out.println("CARGO: "+cargo);

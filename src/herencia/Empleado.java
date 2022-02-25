@@ -30,6 +30,14 @@ public class Empleado extends Persona{
         this.baseHorasExtra = baseHorasExtra;
         this.numHorasExtra = numHorasExtra;
     }
+    public Empleado(Persona p,String fechaContrato, double sueldoBase, double baseHorasExtra, int numHorasExtra){
+        super(p.getNombre()  , p.getApellidos(), p.getDni());
+        this.fechaContrato = fechaContrato;
+        this.sueldoBase = sueldoBase;
+        this.baseHorasExtra = baseHorasExtra;
+        this.numHorasExtra = numHorasExtra;
+    }
+        
 
     public String getFechaContrato() {
         return fechaContrato;

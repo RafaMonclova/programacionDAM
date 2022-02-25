@@ -53,9 +53,11 @@ public class Persona {
     }
     
     public void mostrar_info(){
+        System.out.println(toString());        /*
         System.out.println("NOMBRE: "+nombre);
         System.out.println("APELLIDOS: "+apellidos);
         System.out.println("DNI: "+dni);
+        */
     }
     
     

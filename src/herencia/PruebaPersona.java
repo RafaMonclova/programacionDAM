@@ -12,7 +12,7 @@ public class PruebaPersona {
         
         Directivo dir = new Directivo("LUIS","PEREZ","87654321","23/02/2022",2000,23,5,500,700,"Jefe de planta");
         Programador prog = new Programador("RAFA","MONCLOVA","12345678","25/02/2022",1200,12,7);
-        
+        //Programador prog = new Programador();
         dir.imprimirNomina();
         prog.pedirVacaciones();
         prog.pedirAumento();

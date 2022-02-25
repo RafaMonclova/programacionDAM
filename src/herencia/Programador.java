@@ -24,10 +24,7 @@ public class Programador extends Empleado{
         System.out.println("El jefe de departamento está de vacaciones inténtelo de nuevo cuando vuelva");
     }
     
-    /*
-    public void imprimirNomina(){
-        super.imprimirNomina();
-    }
-    */
+    
+    
     
 }
