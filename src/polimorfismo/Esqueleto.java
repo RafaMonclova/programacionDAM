@@ -16,7 +16,7 @@ public class Esqueleto extends EnemigoBase{
     }
     
     public void estado(){
-        System.out.println("Soy esqueleto con vida"+vida);
+        System.out.println("Soy esqueleto con vida "+vida);
     }
     
 }

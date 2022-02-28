@@ -16,7 +16,7 @@ public class Ogro extends EnemigoBase{
     }
     
     public void estado(){
-        System.out.println("Soy ogro con vida"+vida);
+        System.out.println("Soy ogro con vida "+vida);
     }
     
     
