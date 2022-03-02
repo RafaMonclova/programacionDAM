@@ -61,7 +61,7 @@ public class Partido {
         System.out.println("" + listaGoles);
     }
     
-    public static void jornada(Partido p){
+    public void jornada(){
         
         ArrayList<Gol> goles = new ArrayList();
         
@@ -72,12 +72,12 @@ public class Partido {
             int minAleatorio = (int) ((Math.random() * 89) + 1);
             int jugAleatorio = (int) ((Math.random() * 10) + 1);
             if(porcentaje <= 5){
-                equipoGoleador = p.getEquipoLocal();
+                equipoGoleador = getEquipoLocal();
                 goles.add(new Gol(equipoGoleador, "J" + jugAleatorio, minAleatorio));
                 
             }
             if(porcentaje >= 6){
-                equipoGoleador = p.getEquipoVisitante();
+                equipoGoleador = getEquipoVisitante();
                 goles.add(new Gol(equipoGoleador, "J" + jugAleatorio, minAleatorio));
                 
             }
@@ -85,18 +85,17 @@ public class Partido {
             
             
         }
-        p.setListaGoles(goles);
+        setListaGoles(goles);
         
     }
-    public static void jugadoresGol(Partido p){
-        for(int i = 0;i<p.getListaGoles().size();i++){
-            System.out.println(p.getListaGoles().get(i).getNombreJugador());
+    public void jugadoresGol(){
+        for(int i = 0;i<getListaGoles().size();i++){
+            System.out.println(getListaGoles().get(i).getNombreJugador());
             
         }
     }
 
     public static void main(String[] args) {
-
 
         ArrayList<Partido> liga = new ArrayList();
         Partido p1 = new Partido("Madrid", "Barca");
@@ -111,21 +110,7 @@ public class Partido {
         Partido p10 = new Partido("Betis", "Barca");
         Partido p11 = new Partido("Madrid", "Sevilla");
         Partido p12 = new Partido("Sevilla", "Madrid");
-                
-        jornada(p1);
-        jornada(p2);
-        jornada(p3);
-        jornada(p4);
-        jornada(p5);
-        jornada(p6);
-        jornada(p7);
-        jornada(p8);
-        jornada(p9);
-        jornada(p10);
-        jornada(p11);
-        jornada(p12);
-             
-        
+          
         liga.add(p1);
         liga.add(p2);
         liga.add(p3);
@@ -140,10 +125,14 @@ public class Partido {
         liga.add(p12);
         
         for(Partido p : liga){
+            p.jornada();
+        }   
+        
+        for(Partido p : liga){
             p.resultado();
         }
 
-        jugadoresGol(p1);
+        //p1.jugadoresGol();
 
     }
 
