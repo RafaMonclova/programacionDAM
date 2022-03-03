@@ -14,7 +14,7 @@ public class Trabajador {
     private double nomina;
     private int horasExtras;
     private int tipoTrabajador;
-    public final static int DIRECTOR=0;//podria entrar dentro de tipoTrabajador
+    public final static int DIRECTOR=0;
     public final static int SUBDIRECTOR=1;
 
     public Trabajador(String nombre, double nomina) {
@@ -54,5 +54,9 @@ public class Trabajador {
 
     public void setTipo(int tipo) {
         this.tipoTrabajador = tipo;
+    }
+    
+    public double coste(){
+        return this.getNomina() + (this.getHorasExtras() * 20);
     }
 }

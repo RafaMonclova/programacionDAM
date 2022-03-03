@@ -15,6 +15,7 @@ public class Esqueleto extends EnemigoBase{
         super.vida = vida;
     }
     
+    @Override
     public void estado(){
         System.out.println("Soy esqueleto con vida "+vida);
     }

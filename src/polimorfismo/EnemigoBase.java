@@ -8,7 +8,7 @@ package polimorfismo;
 public class EnemigoBase {
     
     
-    int vida;
+    protected int vida;
     
     public EnemigoBase(){
         vida = 10;

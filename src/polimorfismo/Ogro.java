@@ -15,6 +15,7 @@ public class Ogro extends EnemigoBase{
         super.vida = vida;
     }
     
+    @Override
     public void estado(){
         System.out.println("Soy ogro con vida "+vida);
     }

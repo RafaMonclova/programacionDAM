@@ -8,17 +8,11 @@ package empresa;
 
 public class CostoPersonal {
  
-	static float costoDelPersonal (Trabajador trabajadores [ ] ) {
-		float costoFinal = 0;
+	static double costoDelPersonal (Trabajador trabajadores [ ] ) {
+		double costoFinal = 0;
 		
             for (Trabajador trabajador : trabajadores) {
-                if (trabajador.getTipoTrabajador( )==Trabajador.DIRECTOR || trabajador.getTipoTrabajador( )==Trabajador.SUBDIRECTOR){
-                    costoFinal += trabajador.getNomina( );
-                }
-                else
-                {
-                    costoFinal += trabajador.getNomina( ) + (trabajador.getHorasExtras( ) * 20);
-                }
+                costoFinal += trabajador.coste();
             }
 		return costoFinal ;
 	}
