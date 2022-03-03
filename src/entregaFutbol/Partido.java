@@ -248,7 +248,7 @@ public class Partido {
             p.resultado();
         }
 
-        //Se imprime el ranking, mostrando cuántos goles marca cada equipo. La variable contPartido se usa para imprimir el identificador de cada partido a la hora de mostrarlos
+        //Se imprime el ranking, mostrando cuántos goles marca cada equipo. La variable idPartido se usa para imprimir el identificador de cada partido a la hora de mostrarlos
         int idPartido = 1;
         for(Partido p : liga){
             System.out.println("============================");
