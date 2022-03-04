@@ -11,4 +11,6 @@ package interfaces;
  */
 public interface Resizable {
     
+    public void resize(double porcentaje);
+    
 }

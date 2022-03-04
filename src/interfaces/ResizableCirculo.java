@@ -9,6 +9,19 @@ package interfaces;
  *
  * @author alumno
  */
-public class ResizableCirculo {
+public class ResizableCirculo extends Circulo implements Resizable{
+
+    
+    public ResizableCirculo(double radio){
+        super(radio);
+    }
+    
+    @Override
+    public void resize(double porcentaje) {
+        super.radio = super.radio + ((porcentaje/100) * super.radio);
+    }
+    
+    
+    
     
 }
