@@ -28,10 +28,11 @@ public class Cliente {
         for (Alquiler each: alquileres) {
             double importe = 0;
             
-            /* --SWITCH-- Cambiamos el switch por el metodo precio(), que calcula el precio dependiendo de los
+            /* --SWITCH-- 
+            Cambiamos el switch por el metodo precio(), que calcula el precio dependiendo de los
             dias alquilados y el tipo de pelicula*/
             
-            each.getPelicula().precio(each.getDiasAlquilada());
+            importe = each.getPelicula().precio(each.getDiasAlquilada());
 
             // Añade los puntos de alquiler, dependiendo del tipo de película, el método realiza el calculo
             puntosAlquilerFrecuente = each.getPelicula().puntosAlquilerFrecuente(each.getDiasAlquilada());

@@ -18,7 +18,7 @@ public class ResizableCirculo extends Circulo implements Resizable{
     
     @Override
     public void resize(double porcentaje) {
-        super.radio = super.radio + ((porcentaje/100) * super.radio);
+        super.radio = super.radio * porcentaje / 100;
     }
     
     
