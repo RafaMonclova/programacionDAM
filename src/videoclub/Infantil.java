@@ -11,6 +11,7 @@ public class Infantil extends Pelicula{
         super(titulo);
     }
     
+    //Reescribe el método si es Infantil
     @Override
     public double precio(int diasAlquilado){
         double importe = 0;

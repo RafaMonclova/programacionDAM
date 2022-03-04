@@ -11,6 +11,7 @@ public class Regular extends Pelicula{
         super(titulo);
     }
     
+    //Reescribe el método si es Regular
     @Override
     public double precio(int diasAlquilado){
         double importe = 2;

@@ -11,6 +11,7 @@ public class Estreno extends Pelicula{
         super(titulo);
     }
     
+    //Reescribe el método precio() si es Estreno
     @Override
     public double precio(int diasAlquilado){
         double importe = 0;
@@ -18,12 +19,12 @@ public class Estreno extends Pelicula{
         return importe;    
     }
     
-    //Reescribe el metodo si es Estreno
+    //Reescribe el metodo puntosAlquilerFrecuente si es Estreno, sumando 2 puntos extras
     @Override
     public int puntosAlquilerFrecuente(int diasAlquilado){
         int puntosAlquilerFrecuente = 0;
         if(diasAlquilado > 1){
-            puntosAlquilerFrecuente++;
+            puntosAlquilerFrecuente = puntosAlquilerFrecuente +2;
         }
         return puntosAlquilerFrecuente;
     }

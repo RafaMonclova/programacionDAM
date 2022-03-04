@@ -7,11 +7,9 @@ public class Pelicula {
     public static final int ESTRENO = 1;
     public static final int REGULAR = 0;
     */
-    //ES mejor crear una clase hija que extienda de Pelicula, para cada tipo de película
-    
+    //Es mejor crear una clase hija que extienda de Pelicula, para cada tipo de película
 
     private String titulo;
-    
 
     public Pelicula(String titulo ) {
         this.titulo = titulo;
@@ -38,7 +36,9 @@ public class Pelicula {
     //Lo calculamos en un método aparte, fuera de extracto()
     public int puntosAlquilerFrecuente(int diasAlquilado){
         int puntosAlquilerFrecuente = 0;
-        puntosAlquilerFrecuente++;
+        if(diasAlquilado > 1){
+            puntosAlquilerFrecuente++;
+        }
         return puntosAlquilerFrecuente;
     }
     
