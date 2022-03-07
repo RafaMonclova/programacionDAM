@@ -19,9 +19,11 @@ abstract public class VehiculoTransporte extends Vehiculo{
     }
 
     public VehiculoTransporte(int numPlazas, String matricula, int duracionAlquiler) {
-        super(matricula, duracionAlquiler);
+        super(matricula, duracionAlquiler);  
         this.numPlazas = numPlazas;
-    }
+    
+        
+    } 
 
     public int getNumPlazas() {
         return numPlazas;
