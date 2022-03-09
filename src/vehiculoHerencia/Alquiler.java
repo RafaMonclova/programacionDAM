@@ -110,6 +110,7 @@ public class Alquiler implements Exportable{
             pedido[i].recibo();
                 
         }
+       
         
         
     }
