@@ -47,7 +47,7 @@ public class Saltador implements Comparable<Saltador>{
         Saltador.records = records;
     }
  
-    public int getIndex(String nombre){
+    public int getIndice(String nombre){
         
         for(int i = 0;i<records.size();i++){
             if(records.get(i).getNombre().equals(nombre)){
@@ -62,7 +62,7 @@ public class Saltador implements Comparable<Saltador>{
     public void registrarSalto(int distancia){
         
         Salto nuevo = new Salto(nombre,distancia);
-        int num = getIndex(nombre);
+        int num = getIndice(nombre);
         
             
         if(records.get(num).compareTo(nuevo)>0){
@@ -78,26 +78,28 @@ public class Saltador implements Comparable<Saltador>{
     @Override
     public int compareTo(Saltador s) {
         
-        int posObjeto = records.indexOf(this.nombre);
-        int posParametro = records.indexOf(s.nombre);
-        return posObjeto-posParametro;
+        int distanciaThis = -1;
+        int distanciaOtro = -1;
         
-    }
-
-    
-    
-    
-    
-    public void mostrar(){
-        
-        for(Salto s : records){
+        for(int i = 0;i<records.size();i++){
             
-            System.out.println(s.getNombre());
-            System.out.println(s.getDistancia());
+            if(records.get(i).getNombre().equals(nombre)){
+                distanciaThis = records.get(i).getDistancia();
+                
+            }
+            if(records.get(i).getNombre().equals(s.nombre)){
+                distanciaOtro = records.get(i).getDistancia();
+            }
             
         }
         
+        return distanciaOtro - distanciaThis;
+        
+        
     }
+
+ 
+    
     
     
 }

@@ -55,7 +55,7 @@ public class ejercicio3 {
                 contadorVacios++;
                 contadorVaciosMostrar++;
                 
-            }
+                }
                        
             }
         
@@ -68,23 +68,44 @@ public class ejercicio3 {
         System.out.println("Seleccione la fila:");
         int fila = sc.nextInt();
         
+        System.out.println("Seleccione la columna:");
+        int columna = sc.nextInt();
+        
+        /*
         for(int i = 0;i<salaCine.length;i++){
             for(int j = 0; j < numAsientos;j++){
                 
                 //Preguntamos si hay más asientos vacios en la fila seleccionada que asientos pedidos
                 if(contadorVacios >= numAsientos){
-                    salaCine[fila][j] = nombre;
+                    salaCine[fila][columna] = nombre;
                     contadorVacios--;
                 }
                 
                             
             }
         }
-        
-        System.out.println("Reserva realizada:");
-        System.out.println("NOMBRE: "+nombre);
-        System.out.println("FILA: "+fila);
-        System.out.println("ASIENTOS: "+numAsientos);
+        */
+        boolean ok=true;
+         for(int i = columna;i<numAsientos+columna;i++){
+            
+             if (i >=salaCine.length || salaCine[fila][i]!=null)
+                 ok=false;
+             
+        }
+         
+        if (ok){
+                for(int i = columna;i<numAsientos+columna;i++){
+                    salaCine[fila][i]=nombre;
+                }
+                System.out.println("Reserva realizada:");
+                System.out.println("NOMBRE: "+nombre);
+                System.out.println("FILA: "+fila);
+                System.out.println("ASIENTOS: "+numAsientos); 
+        }
+        else{ 
+            System.out.println("incorrecto NO RESERVADA");
+        }
+       
         
     }
     
