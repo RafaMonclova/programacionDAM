@@ -1,5 +1,5 @@
 
-package examenAñoPasao;
+package repaso;
 
 import java.util.HashMap;
 import java.util.Iterator;

@@ -1,4 +1,4 @@
-package examenAñoPasao;
+package repaso;
 
 import java.util.Scanner;
 
