@@ -19,8 +19,6 @@ public class Saltador implements Comparable<Saltador>{
     public Saltador(String nombre, int edad) {
         this.nombre = nombre;
         this.edad = edad;
-        Salto s = new Salto(nombre,0);
-        records.add(s);
     }
 
     public String getNombre() {
@@ -46,33 +44,25 @@ public class Saltador implements Comparable<Saltador>{
     public static void setRecords(ArrayList<Salto> records) {
         Saltador.records = records;
     }
- 
-    public int getIndice(String nombre){
-        
-        for(int i = 0;i<records.size();i++){
-            if(records.get(i).getNombre().equals(nombre)){
-                return i;
-            }
-            
-        }
-        
-        return -1;
-    }
+  
     
     public void registrarSalto(int distancia){
-        
-        Salto nuevo = new Salto(nombre,distancia);
-        int num = getIndice(nombre);
-        
-            
-        if(records.get(num).compareTo(nuevo)>0){
-            records.set(num,nuevo);
+        Salto nuevo = new Salto(nombre, distancia);
+        boolean aparece = false;
+        for(int i = 0; i < records.size(); i++){
+            if (records.get(i).getNombre().equals(nombre)){
+                aparece = true;
+                if (records.get(i).compareTo(nuevo) > 0){
+                    //records.set(i, nuevoSalto);
+                    records.get(i).setDistancia(distancia);
+                   
+                }
+            }
         }
-            
-        
- 
+        if (!aparece){
+            records.add(nuevo);
+        }
         Collections.sort(records);
-        
     }
 
     @Override
