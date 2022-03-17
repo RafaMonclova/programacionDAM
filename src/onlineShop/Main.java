@@ -13,6 +13,7 @@ public class Main {
     
     public static void main(String[] args){
         
+        
         Product[] pa = new Product[7];
         
         pa[0] = new TV(30,1000,"SAMSUNG");
@@ -25,14 +26,15 @@ public class Main {
         
         double totalRegularPrice = 0;
         double totalSalePrice = 0;
-        
+        double SpecilTotal=0;
         for(int i = 0;i<pa.length;i++){
             
             totalRegularPrice += pa[i].getRegularPrice();
             totalSalePrice += pa[i].computeSalePrice();
-            
+            SpecilTotal+=pa[i].computeSpecialCustomerPrice();
+                    
             System.out.println("Item number "+i);
-            System.out.println("Type "+pa[i].getClass().getName());
+            System.out.println("Type "+pa[i].getClass());
             System.out.println("Regular Price "+ pa[i].getRegularPrice());
             System.out.println("Sale Price "+ pa[i].computeSalePrice());
             System.out.println("Special Customer Price "+pa[i].computeSpecialCustomerPrice());
@@ -43,8 +45,10 @@ public class Main {
         
         System.out.println("TOTAL REGULAR PRICE: "+totalRegularPrice);
         System.out.println("TOTAL SALE PRICE: "+totalSalePrice);
+        System.out.println("TOTAL Special Customer Price: "+SpecilTotal);
         
-    }
+     
+}
     
-    
+  
 }

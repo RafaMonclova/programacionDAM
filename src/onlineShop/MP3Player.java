@@ -16,6 +16,7 @@ public class MP3Player extends Electronics{
 
     public MP3Player(String color, double regularPrice, String manufacturer) {
         super(regularPrice, manufacturer);
+          
         this.color = color;
     }
     

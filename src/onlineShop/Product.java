@@ -14,6 +14,7 @@ abstract public class Product {
     protected double regularPrice;
 
     public Product(double regularPrice) {
+       
         this.regularPrice = regularPrice;
     }
 

@@ -16,6 +16,7 @@ abstract public class Electronics extends Product{
     
     public Electronics(double regularPrice,String manufacturer) {
         super(regularPrice);
+        
         this.manufacturer = manufacturer;
     }
     

@@ -23,7 +23,7 @@ public class Camera extends Electronics{
 
     @Override
     public double computeSpecialCustomerPrice() {//resta un 10%
-        return this.computeSalePrice() - (this.computeSalePrice()*10/100);
+        return this.computeSalePrice()* 0.9;
     }
     
 }
