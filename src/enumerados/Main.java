@@ -56,7 +56,7 @@ public class Main {
         String respuesta = sc.nextLine();
         
         if(animales.get(posicion).getEspecie().equals(respuesta)){
-            System.out.println("Enhorabuena! Has acertado, el animal es: "+animales.get(posicion).getNombre());
+            System.out.println("Enhorabuena! Has acertado, el animal es: "+animales.get(posicion));
         }
         else
             System.out.println("Has fallado, la especie es: "+animales.get(posicion).getEspecie());

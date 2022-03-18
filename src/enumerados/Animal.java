@@ -38,7 +38,7 @@ abstract public class Animal{
 
     @Override
     public String toString() {
-        return "Nombre: " + nombre + ", Especie: " + especie + ", Ruido: "+ruido();
+        return "Nombre: " + nombre + ", Especie: " + especie +", Alimentación: "+alimentacion+ ", Ruido: "+ruido();
     }
     
     
