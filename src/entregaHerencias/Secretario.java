@@ -14,11 +14,6 @@ public class Secretario extends Empleado{
     private boolean despacho;
     private int fax;
 
-    public Secretario(boolean despacho, int fax, String nombre, String apellidos, String DNI, String direccion, int antiguedad, int telefono, double salario, Empleado supervisor) {
-        super(nombre, apellidos, DNI, direccion, antiguedad, telefono, salario, supervisor);
-        this.despacho = despacho;
-        this.fax = fax;
-    }
     
     public Secretario(boolean despacho, int fax, String nombre, String apellidos, String DNI, String direccion, int antiguedad, int telefono, double salario) {
         super(nombre, apellidos, DNI, direccion, antiguedad, telefono, salario);

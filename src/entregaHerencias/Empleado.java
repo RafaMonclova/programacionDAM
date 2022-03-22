@@ -21,17 +21,6 @@ public class Empleado {
     protected Empleado supervisor;
     
 
-    public Empleado(String nombre, String apellidos, String DNI, String direccion, int antiguedad, int telefono, double salario, Empleado supervisor) {
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.DNI = DNI;
-        this.direccion = direccion;
-        this.antiguedad = antiguedad;
-        this.telefono = telefono;
-        this.salario = salario;
-        this.supervisor = supervisor;
-    }
-
     public Empleado(String nombre, String apellidos, String DNI, String direccion, int antiguedad, int telefono, double salario) {
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -57,6 +46,7 @@ public class Empleado {
         
     }
     
+    //Cambia el supervisor o establece uno nuevo si no lo hay
     public void cambiarSupervisor(String nombre, String apellidos, String DNI, String direccion, int antiguedad, int telefono, double salario){
         
         Empleado e = new Empleado(nombre, apellidos, DNI, direccion, antiguedad, telefono, salario);

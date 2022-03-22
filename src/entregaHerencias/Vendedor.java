@@ -20,13 +20,6 @@ public class Vendedor extends Empleado{
     protected ArrayList<Cliente> listaClientes = new ArrayList();
     protected double porcentajeComision;
 
-    public Vendedor(Coche coche, int movil, String areaVenta, double porcentajeComision, String nombre, String apellidos, String DNI, String direccion, int antiguedad, int telefono, double salario, Empleado supervisor) {
-        super(nombre, apellidos, DNI, direccion, antiguedad, telefono, salario, supervisor);
-        this.coche = coche;
-        this.movil = movil;
-        this.areaVenta = areaVenta;
-        this.porcentajeComision = porcentajeComision;
-    }
     
     public Vendedor(Coche coche, int movil, String areaVenta, double porcentajeComision, String nombre, String apellidos, String DNI, String direccion, int antiguedad, int telefono, double salario) {
         super(nombre, apellidos, DNI, direccion, antiguedad, telefono, salario);
