@@ -16,7 +16,7 @@ public class Jefe extends Empleado{
     
     protected boolean despacho;
     protected Secretario secretarioSupervisa;
-    protected ArrayList listaVendedores;
+    protected ArrayList<Vendedor> listaVendedores;
     protected Coche coche;
     
 
@@ -41,8 +41,16 @@ public class Jefe extends Empleado{
         super.imprimir();
         
         System.out.println("DESPACHO "+despacho);
-        System.out.println("SECRETARIO: "+secretarioSupervisa);
-        System.out.println("LISTA DE VENDEDORES: "+listaVendedores);
+        System.out.println("SECRETARIO: ");
+        System.out.println("================================");
+        secretarioSupervisa.imprimir();
+        System.out.println("================================");
+        System.out.println("LISTA DE VENDEDORES: ");
+        System.out.println("================================");
+        for(Empleado v : listaVendedores){
+            v.imprimir();
+        }
+        System.out.println("================================");
         
         System.out.println();
         

@@ -53,7 +53,7 @@ public class Vendedor extends Empleado{
         
 
         Cliente c = new Cliente(DNI,nombre,apellidos,telefono);
-        if(listaClientes.contains(c)){
+        if(listaClientes.contains(c.getDNI())){
             System.out.println("Error, ya existe un cliente con ese DNI");
         }
         else
@@ -126,6 +126,8 @@ public class Vendedor extends Empleado{
     public void setPorcentajeComision(double porcentajeComision) {
         this.porcentajeComision = porcentajeComision;
     }
+
+    
     
     
     

@@ -53,6 +53,8 @@ public class Secretario extends Empleado{
     public void setFax(int fax) {
         this.fax = fax;
     }
+
+    
     
     
     
