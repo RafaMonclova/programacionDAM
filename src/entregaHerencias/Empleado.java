@@ -1,6 +1,7 @@
 
 package entregaHerencias;
 
+import static entregaHerencias.Main.supervisor;
 import java.util.Scanner;
 
 /**
@@ -30,6 +31,7 @@ abstract public class Empleado {
         
     }
     
+    //Modifica datos del empleado
     public void modificar(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Qué datos desea modificar?");
@@ -40,6 +42,7 @@ abstract public class Empleado {
         System.out.println("5.ANTIGÜEDAD ");
         System.out.println("6.CONTACTO ");
         System.out.println("7.SALARIO ");
+        System.out.println("8.SUPERVISOR ");
         
         int opcion = sc.nextInt();
         sc.nextLine();
@@ -51,21 +54,51 @@ abstract public class Empleado {
                 setNombre(nombre);
                 break;
             case 2:
+                System.out.println("Introduzca apellidos");
+                String apellidos = sc.nextLine();
+                setApellidos(apellidos);
                 break;
             case 3:
+                System.out.println("Introduzca DNI");
+                String dni = sc.nextLine();
+                setDNI(dni);
                 break;
             case 4:
+                System.out.println("Introduzca dirección");
+                String direccion = sc.nextLine();
+                setDireccion(direccion);
                 break;
             case 5:
+                System.out.println("Introduzca antigüedad");
+                int antiguedad = sc.nextInt();
+                setAntiguedad(antiguedad);
                 break;
             case 6:
+                System.out.println("Introduzca teléfono de contacto");
+                int telefono = sc.nextInt();
+                setTelefono(telefono);
                 break;
             case 7:
+                System.out.println("Introduzca salario");
+                int salario = sc.nextInt();
+                setSalario(salario);
                 break;
-            
+            case 8:
+                System.out.println("Introduzca si tiene un supervisor (s/n)");
+                char siNo = sc.next().charAt(0);
+                sc.nextLine();
+                if(siNo == 's'){
+                    System.out.println("Introduce DNI del supervisor");
+                    String dniSupervisor = sc.nextLine();
+                    supervisor(this,dniSupervisor);
+                }
+                break;
+       
         }
         
     }
+    
+    
     
     public void imprimir(){
         

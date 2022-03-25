@@ -1,8 +1,10 @@
 
 package entregaHerencias;
 
+import static entregaHerencias.Main.supervisor;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 /**
  *
@@ -22,6 +24,150 @@ public class Jefe extends Empleado{
         this.secretarioSupervisa = secretarioSupervisa;
         this.listaVendedores = listaVendedores;
         this.coche = coche;
+    }
+    
+    @Override
+    public void modificar(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Qué datos desea modificar?");
+        System.out.println("1.NOMBRE ");
+        System.out.println("2.APELLIDOS ");
+        System.out.println("3.DNI ");
+        System.out.println("4.DIRECCIÓN ");
+        System.out.println("5.ANTIGÜEDAD ");
+        System.out.println("6.CONTACTO ");
+        System.out.println("7.SALARIO ");
+        System.out.println("8.DESPACHO");
+        System.out.println("9.SECRETARIO QUE SUPERVISA");
+        System.out.println("10.LISTA VENDEDORES");
+        System.out.println("11.COCHE");
+        System.out.println("12.SUPERVISOR ");
+        
+        int opcion = sc.nextInt();
+        sc.nextLine();
+        switch(opcion){
+            
+            case 1:
+                System.out.println("Introduzca nombre");
+                String nombre = sc.nextLine();
+                setNombre(nombre);
+                break;
+            case 2:
+                System.out.println("Introduzca apellidos");
+                String apellidos = sc.nextLine();
+                setApellidos(apellidos);
+                break;
+            case 3:
+                System.out.println("Introduzca DNI");
+                String dni = sc.nextLine();
+                setDNI(dni);
+                break;
+            case 4:
+                System.out.println("Introduzca dirección");
+                String direccion = sc.nextLine();
+                setDireccion(direccion);
+                break;
+            case 5:
+                System.out.println("Introduzca antigüedad");
+                int antiguedad = sc.nextInt();
+                setAntiguedad(antiguedad);
+                break;
+            case 6:
+                System.out.println("Introduzca teléfono de contacto");
+                int telefono = sc.nextInt();
+                setTelefono(telefono);
+                break;
+            case 7:
+                System.out.println("Introduzca salario");
+                int salario = sc.nextInt();
+                setSalario(salario);
+                break;
+            case 8:
+                System.out.println("Introduzca si tiene despacho (s/n)");
+                char siNo = sc.next().charAt(0);
+                if(siNo == 's')
+                    setDespacho(true);
+                break;    
+                
+            case 9:
+                System.out.println("Introduzca los datos de su secretario");
+                System.out.println("Tiene despacho?");
+                char despachoSiNoSJ = sc.next().charAt(0);
+                boolean despachoSJ;
+                if(despachoSiNoSJ == 's'){
+                    this.secretarioSupervisa.setDespacho(true);
+                }
+                
+                System.out.println("Introduce número de fax:");
+                int faxSJ = sc.nextInt();
+                sc.nextLine();
+                this.secretarioSupervisa.setFax(faxSJ);
+                System.out.println("Introduce nombre:");
+                String nombreSJ = sc.nextLine();
+                this.secretarioSupervisa.setNombre(nombreSJ);
+                System.out.println("Introduce apellidos:");
+                String apellidosSJ = sc.nextLine();
+                this.secretarioSupervisa.setApellidos(apellidosSJ);
+                System.out.println("Introduce DNI:");
+                String dniSJ = sc.nextLine();
+                this.secretarioSupervisa.setDNI(dniSJ);
+                System.out.println("Introduce dirección:");
+                String direccionSJ = sc.nextLine();
+                this.secretarioSupervisa.setDireccion(direccionSJ);
+                System.out.println("Introduce su antigüedad:");
+                int antiguedadSJ = sc.nextInt();
+                this.secretarioSupervisa.setAntiguedad(antiguedadSJ);
+                System.out.println("Introduce teléfono:");
+                int telefonoSJ = sc.nextInt();
+                this.secretarioSupervisa.setTelefono(telefonoSJ);
+                System.out.println("Introduce su salario:");
+                int salarioSJ = sc.nextInt();
+                this.secretarioSupervisa.setSalario(salarioSJ);
+                
+                break;
+            case 10:
+                
+                for(Empleado e : listaVendedores){         
+                    e.imprimir();   
+                }
+                System.out.println("Introduzca el DNI del vendedor a modificar sus datos");
+                String dniVendedor = sc.nextLine();
+                
+                for(Empleado d : listaVendedores){
+                        if(d.getDNI().equals(dniVendedor)){
+                            d.modificar();
+                        }
+                    }
+                
+                break;
+            case 11:
+                System.out.println("Introduzca los datos del vehículo");
+                System.out.println("Introduzca la matrícula");
+                String matricula = sc.nextLine();
+                this.coche.setMatricula(matricula);
+                System.out.println("Introduzca la marca");
+                String marca = sc.nextLine();
+                this.coche.setMarca(marca);
+                System.out.println("Introduzca el modelo");
+                String modelo = sc.nextLine();
+                this.coche.setModelo(modelo);
+                break;
+                
+            case 12:
+                System.out.println("Introduzca si tiene un supervisor (s/n)");
+                char siNoS = sc.next().charAt(0);
+                sc.nextLine();
+                if(siNoS == 's'){
+                    System.out.println("Introduce DNI del supervisor");
+                    String dniSupervisor = sc.nextLine();
+                    supervisor(this,dniSupervisor);
+                }
+                break;
+                    
+            
+            
+        }
+        
     }
 
     

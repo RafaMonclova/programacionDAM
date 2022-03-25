@@ -1,6 +1,7 @@
 
 package entregaHerencias;
 
+import static entregaHerencias.Main.supervisor;
 import java.util.Scanner;
 
 /**
@@ -33,6 +34,7 @@ public class Secretario extends Empleado{
         System.out.println("7.SALARIO ");
         System.out.println("8.DESPACHO ");
         System.out.println("9.FAX ");
+        System.out.println("10.SUPERVISOR");
         
         int opcion = sc.nextInt();
         sc.nextLine();
@@ -44,23 +46,55 @@ public class Secretario extends Empleado{
                 setNombre(nombre);
                 break;
             case 2:
+                System.out.println("Introduzca apellidos");
+                String apellidos = sc.nextLine();
+                setApellidos(apellidos);
                 break;
             case 3:
+                System.out.println("Introduzca DNI");
+                String dni = sc.nextLine();
+                setDNI(dni);
                 break;
             case 4:
+                System.out.println("Introduzca dirección");
+                String direccion = sc.nextLine();
+                setDireccion(direccion);
                 break;
             case 5:
+                System.out.println("Introduzca antigüedad");
+                int antiguedad = sc.nextInt();
+                setAntiguedad(antiguedad);
                 break;
             case 6:
+                System.out.println("Introduzca teléfono de contacto");
+                int telefono = sc.nextInt();
+                setTelefono(telefono);
                 break;
             case 7:
+                System.out.println("Introduzca salario");
+                int salario = sc.nextInt();
+                setSalario(salario);
                 break;
             case 8:
-                
+                System.out.println("Introduzca si tiene despacho (s/n)");
+                char siNo = sc.next().charAt(0);
+                if(siNo == 's')
+                    setDespacho(true);
                 break;
             case 9:
-                System.out.println("Introduce fax");
+                System.out.println("Introduzca fax");
                 int fax = sc.nextInt();
+                setFax(fax);
+                break;
+            case 10:
+                System.out.println("Introduzca si tiene un supervisor (s/n)");
+                char siNoS = sc.next().charAt(0);
+                sc.nextLine();
+                if(siNoS == 's'){
+                    System.out.println("Introduce DNI del supervisor");
+                    String dniSupervisor = sc.nextLine();
+                    supervisor(this,dniSupervisor);
+                }
                 break;    
             
         }

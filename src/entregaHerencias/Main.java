@@ -39,9 +39,50 @@ public class Main {
         for(Empleado e : listaEmpleados){
             if(e.getDNI().equals(DNI))
                 e.imprimir();
-                break;
+                
         }
         
+    }
+    
+    public static void filtrar(char cargo){
+        
+        ArrayList<Empleado> vendedoresEmpresa = new ArrayList();
+        ArrayList<Empleado> secretariosEmpresa = new ArrayList();
+        ArrayList<Empleado> jefesEmpresa = new ArrayList();
+
+            for(Empleado empleado : listaEmpleados){
+                if(empleado.getClass().getName().equals("entregaHerencias.Vendedor")){
+                    vendedoresEmpresa.add(empleado);
+                }
+                if(empleado.getClass().getName().equals("entregaHerencias.Secretario")){
+                    secretariosEmpresa.add(empleado);
+                }
+                if(empleado.getClass().getName().equals("entregaHerencias.Jefe")){
+                    jefesEmpresa.add(empleado);
+                }
+                    
+            }
+        
+        switch(cargo){
+            
+            case 's':
+                for(Empleado e : secretariosEmpresa){
+                    e.imprimir();
+                }
+                break;
+            case 'v':
+                for(Empleado e : vendedoresEmpresa){
+                    e.imprimir();
+                }
+                break;
+            case 'j':
+                for(Empleado e : jefesEmpresa){
+                    e.imprimir();
+                }
+                break;
+            
+        }    
+            
     }
     
     
@@ -356,6 +397,9 @@ public class Main {
                     break;
                 case 6:
                     System.out.println("6. Mostrar datos de todos los empleados del mismo tipo");
+                    System.out.println("Introduce el cargo a mostrar (s-secretarios,v-vendedores,j-jefes)");
+                    char cargoFiltrar = sc.next().charAt(0);
+                    filtrar(cargoFiltrar);
                     break;
                 case 0:
                     System.out.println("SALIENDO...");
