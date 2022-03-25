@@ -1,15 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package entregaHerencias;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
  *
- * @author rafa
+ * @author RAFAEL MONCLOVA SUANO
  */
 public class Main {
     
@@ -32,6 +30,16 @@ public class Main {
             
             e.imprimir();
             
+        }
+        
+    }
+    
+    public static void mostrar(String DNI){
+        
+        for(Empleado e : listaEmpleados){
+            if(e.getDNI().equals(DNI))
+                e.imprimir();
+                break;
         }
         
     }
@@ -254,6 +262,20 @@ public class Main {
         
     }
     
+    public static void bajaEmpleado(String DNI){
+        
+        Iterator it = listaEmpleados.iterator();
+        while(it.hasNext()){
+            Empleado e  = (Empleado) it.next();
+            if(e.getDNI().equals(DNI)){
+                it.remove();
+            }
+        }
+        
+    }
+    
+    
+    
     public static void main(String[] args) {
         
         Scanner sc = new Scanner(System.in);
@@ -296,7 +318,7 @@ public class Main {
         do {
             System.out.println("Introduce una opción: ");
             opcion = sc.nextInt();
-            
+            sc.nextLine();
             switch(opcion){
                 
                 case 1:
@@ -311,21 +333,36 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("3. Borrar empleado pidiendo datos");
-                    
+                    System.out.println("Introduce el DNI del empleado a eliminar");
+                    String dniEliminar = sc.nextLine();
+                    bajaEmpleado(dniEliminar);
                     break;
                 case 4:
                     System.out.println("4. Modificar datos de empleado");
+                    System.out.println("Introduzca el DNI del empleado al que desea modificar sus datos");
+                    String dniModificar = sc.nextLine();
+                    for(Empleado d : listaEmpleados){
+                        if(d.getDNI().equals(dniModificar)){
+                            d.modificar();
+                        }
+                    }
+                    
                     break;
                 case 5:
                     System.out.println("5. Mostrar datos de un empleado dado su DNI");
+                    System.out.println("Introduce el DNI del empleado a mostrar");
+                    String dniMostrar = sc.nextLine();
+                    mostrar(dniMostrar);
                     break;
                 case 6:
                     System.out.println("6. Mostrar datos de todos los empleados del mismo tipo");
                     break;
                 case 0:
                     System.out.println("SALIENDO...");
+                    break;
                 default:
                     System.out.println("Introduce una opción válida.");
+                    break;
                          
             }
             

@@ -1,16 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entregaHerencias;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 /**
  *
- * @author alumno
+ * @author RAFAEL MONCLOVA SUANO
  */
 public class Vendedor extends Empleado{
 
@@ -29,6 +26,56 @@ public class Vendedor extends Empleado{
         this.porcentajeComision = porcentajeComision;
     }
 
+    @Override
+    public void modificar(){
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("Qué datos desea modificar?");
+        System.out.println("1.NOMBRE ");
+        System.out.println("2.APELLIDOS ");
+        System.out.println("3.DNI ");
+        System.out.println("4.DIRECCIÓN ");
+        System.out.println("5.ANTIGÜEDAD ");
+        System.out.println("6.CONTACTO ");
+        System.out.println("7.SALARIO ");
+        System.out.println("8.COCHE ");
+        System.out.println("9.MOVIL ");
+        System.out.println("10.AREA DE VENTA ");
+        System.out.println("11.PORCENTAJE DE COMISION");
+        
+        int opcion = sc.nextInt();
+        sc.nextLine();
+        switch(opcion){
+            
+            case 1:
+                System.out.println("Introduzca nombre");
+                String nombre = sc.nextLine();
+                setNombre(nombre);
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                
+                break;
+            case 9:
+                System.out.println("Introduce fax");
+                int fax = sc.nextInt();
+                break;    
+            
+        }
+  
+        
+    }
     
     @Override
     public void imprimir(){

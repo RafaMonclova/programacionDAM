@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entregaHerencias;
 
 import java.util.Scanner;
 
 /**
  *
- * @author alumno
+ * @author RAFAEL MONCLOVA SUANO
  */
 abstract public class Empleado {
     
@@ -34,6 +30,42 @@ abstract public class Empleado {
         
     }
     
+    public void modificar(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Qué datos desea modificar?");
+        System.out.println("1.NOMBRE ");
+        System.out.println("2.APELLIDOS ");
+        System.out.println("3.DNI ");
+        System.out.println("4.DIRECCIÓN ");
+        System.out.println("5.ANTIGÜEDAD ");
+        System.out.println("6.CONTACTO ");
+        System.out.println("7.SALARIO ");
+        
+        int opcion = sc.nextInt();
+        sc.nextLine();
+        switch(opcion){
+            
+            case 1:
+                System.out.println("Introduzca nombre");
+                String nombre = sc.nextLine();
+                setNombre(nombre);
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            
+        }
+        
+    }
     
     public void imprimir(){
         
