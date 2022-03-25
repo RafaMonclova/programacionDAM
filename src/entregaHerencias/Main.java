@@ -120,6 +120,7 @@ public class Main {
                 System.out.println("DATOS DEL EMPLEADO");
                 System.out.println("Introduce móvil de contacto:");
                 int movil = sc.nextInt();
+                sc.nextLine();
                 System.out.println("Introduce el área de venta:");
                 String areaVenta = sc.nextLine();
                 System.out.println("Introduce el porcentaje de comisión que recibe:");
@@ -197,6 +198,7 @@ public class Main {
                 System.out.println("VENDEDORES DISPONIBLES:");
                 //Lista de vendedores que tendrá el jefe
                 ArrayList<Empleado> listaVendedoresJefe = new ArrayList();
+                //Lista con los vendedores de la empresa
                 ArrayList<Empleado> vendedoresEmpresa = new ArrayList();
                 
                 for(Empleado empleado : listaEmpleados){
@@ -255,10 +257,7 @@ public class Main {
     public static void main(String[] args) {
         
         Scanner sc = new Scanner(System.in);
-        
-        
-        
-        
+           
         //secretarios
         Secretario s1 = new Secretario(true, 857230954, "ANTONIO", "PEREZ", "56392174T", "CALLE AMAPOLA", 5, 956732918, 900);
         Secretario s2 = new Secretario(false, 857875612, "PEDRO", "VÁZQUEZ", "56943912W", "CALLE MARGARITA", 6, 956789456, 900);
@@ -266,7 +265,7 @@ public class Main {
         listaEmpleados.add(s2);
         
         //vendedores del jefe
-        //Añadimos los vendedores a la lista de vendedores y a la lista de empleados
+        //Añadimos los vendedores a la lista de vendedores de j1 y a la lista de empleados
         ArrayList<Vendedor> listaVendedoresJ1 = new ArrayList();
         Vendedor vj1 = new Vendedor(new Coche("1212TYU","KIA","RIO"), 987123467, "ZONA FRANCA", 10, "V1", "GARCÍA", "11111111A", "CALLE FLOR", 1, 968461285, 1200);
         Vendedor vj2 = new Vendedor(new Coche("2121TYU","OPEL","CORSA"), 987773467, "ZONA NORTE", 21, "V2", "LÓPEZ", "22222222A", "CALLE ZARZA", 2, 968568321, 1200);
@@ -311,13 +310,17 @@ public class Main {
                     altaEmpleado(cargo);
                     break;
                 case 3:
+                    System.out.println("3. Borrar empleado pidiendo datos");
                     
                     break;
                 case 4:
+                    System.out.println("4. Modificar datos de empleado");
                     break;
                 case 5:
+                    System.out.println("5. Mostrar datos de un empleado dado su DNI");
                     break;
                 case 6:
+                    System.out.println("6. Mostrar datos de todos los empleados del mismo tipo");
                     break;
                 case 0:
                     System.out.println("SALIENDO...");
