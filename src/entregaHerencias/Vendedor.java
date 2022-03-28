@@ -183,7 +183,7 @@ public class Vendedor extends Empleado{
     
     @Override
     public double liquidoAPercibir(){
-        return salario * 0.1;
+        return antiguedad * 0.1;
     }
 
     public Coche getCoche() {

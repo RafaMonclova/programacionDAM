@@ -173,7 +173,7 @@ public class Jefe extends Empleado{
     
     @Override
     public double liquidoAPercibir(){
-        return salario * 0.2;
+        return antiguedad * 0.2;
     }
     
     @Override
