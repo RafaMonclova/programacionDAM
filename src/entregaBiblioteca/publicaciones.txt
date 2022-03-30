@@ -1,0 +1,4 @@
+Libro;2;Java Programming II;Anis;Koubaa;2014;12;1;I;1457895242;45.0;enfoque paso a paso y con ejemplos usando Java mientras se aprende los conceptos de programación orientada a objetos.
+Libro;1;Java: The Complete Reference, Twelfth Edition;Herbert;Schildt;2021;12;1;I;1260463419;50.26;guía práctica de Java SE 17 
+Conferencia;1;Wireless Sensor Networks;Anis;Koubaa;2013;10;22;I;EWSN 2013;Londres
+Libro;1;Principios de biología molecular;Adriana María;Salazar Montes;2016;7;15;S;6071513669;58.56;fundamentos y aplicaciones en ciencias de la salud
