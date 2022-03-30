@@ -9,6 +9,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -163,6 +167,44 @@ public final class Biblioteca {
         
     }
     
+    public String generos(char genero){
+        
+        String salida = "";
+        
+        switch(genero){
+            
+            case 'B':
+                salida += "Ciencias biológicas";
+                break;
+            case 'S':
+                salida += "Ciencias de la salud y deporte";
+                break;
+            case 'M':
+                salida += "Matemáticas";
+                break;
+            case 'T':
+                salida += "Tecnología";
+                break;
+            case 'H':
+                salida += "Historia, cultura y sociedad";
+                break;
+            case 'G':
+                salida += "Ciencias de la tierra y el espacio";
+                break;
+            case 'F':
+                salida += "Física y química";
+                break;
+            case 'A':
+                salida += "Artes y oficios";
+            case 'I':
+                salida += "Informática";
+            
+        }
+        
+        return salida;
+        
+    }
+    
     /**
      * Añade una nueva publicación a la biblioteca
      */
@@ -171,12 +213,68 @@ public final class Biblioteca {
         Scanner sc = new Scanner(System.in);
         char tipo;
         do {
-            System.out.println("Qué tipo de publicación desea añadir? (L)Libro, (C)Conferencia");
+            System.out.println("Qué tipo de publicación desea añadir? (L)Libro, (C)Conferencia, (S)Salir");
             tipo = sc.next().charAt(0);
             switch(tipo){
                 case 'L':
+                    int numRegistroL = listaPublicaciones.size();
+                    sc.nextLine();
+                    System.out.println("Título:");
+                    String tituloL = sc.nextLine();
+                    System.out.println("Cuántos autores tiene?");
+                    int numAutoresL = sc.nextInt();
+                    sc.nextLine();
+                    ArrayList<Autor> listaAutoresL = new ArrayList();
+                    for (int i = 0; i < numAutoresL; i++) {
+                        System.out.println("Nombre autor "+(i+1));
+                        String nombreL = sc.nextLine();
+                        System.out.println("Apellidos autor "+(i+1));
+                        String apellidosL = sc.nextLine();
+                        Autor aL = new Autor(nombreL,apellidosL);
+                        listaAutoresL.add(aL);
+                    }
+                    
+                    System.out.println("Fecha de publicación: (dd/mm/aa)");
+                    String fechaString = sc.nextLine();
+                    String[] fechaLSeparado = fechaString.split("\\/");
+                    int diaL = Integer.parseInt(fechaLSeparado[0]);
+                    int mesL = Integer.parseInt(fechaLSeparado[1]); 
+                    int añoL = Integer.parseInt(fechaLSeparado[2]);
+                    
+                    Fecha fechaL = new Fecha(diaL,mesL,añoL);
+                    
+                    System.out.println("Géneros:");
+                    System.out.println("Ciencias biológicas (B)");
+                    System.out.println("Ciencias de la salud y el deporte (S)");
+                    System.out.println("Matemáticas (M)");
+                    System.out.println("Tecnología (T)");
+                    System.out.println("Historia, cultura y sociedad (H)");
+                    System.out.println("Informática (I)");
+                    System.out.println("Ciencias de la tierra y el espacio (G)");
+                    System.out.println("Física y química (F)");
+                    System.out.println("Artes y oficios (A)");
+                    
+                    System.out.println("Introduzca el género:");
+                    char generoChar = sc.next().charAt(0);
+                    String generoL = generos(generoChar);
+                    
+                    System.out.println("ISBN:");
+                    long isbn = sc.nextLong();
+                    System.out.println("Costo:");
+                    double costo = sc.nextDouble();
+                    sc.nextLine();
+                    System.out.println("Descripción:");
+                    String descripcion = sc.nextLine();
+                    
+                    Libro libro = new Libro("R"+numRegistroL,tituloL,listaAutoresL,fechaL,generoL,isbn,costo,descripcion);
+                    listaPublicaciones.add(libro);
+                    
+                    numRegistroL++; 
                     break;
                 case 'C':
+                    break;
+                case 'S':
+                    System.out.println("SALIENDO...");
                     break;
                 default:
                     System.out.println("Opción inválida. Introduzca: (L)Libro, (C)Conferencia");
@@ -184,11 +282,97 @@ public final class Biblioteca {
             }
             
             
+           
             
-            
-        } while (tipo!='L' || tipo != 'C');
+        } while (tipo!='S');
         
         
+        
+    }
+    
+    /**
+     * Busca publicaciones por una palabra clave dada
+     * @param palabraClave Recibe una cadena con la palabra a buscar
+     * @return Devuelve una lista con las publicaciones que coinciden con la palabra a buscar
+     */
+    public ArrayList<Publicacion> buscarPublicacion(String palabraClave){
+        
+        ArrayList<Publicacion> publicacionesEncontradas = new ArrayList();
+        
+        for(Publicacion p : listaPublicaciones){
+            
+            //Llama al método buscarPalabra() creado en la clase Publicacion y sus subclases. Si encuentra la palabra en p, devuelve true y se añade p a la lista de encontradas
+            if(p.buscaPalabra(palabraClave)){
+                publicacionesEncontradas.add(p);
+                
+            }
+            
+        }
+        
+        //Collections.sort(publicacionesEncontradas);
+        return publicacionesEncontradas;
+        
+    }
+    
+    public ArrayList<Publicacion> listadoConferencias(){
+        
+        ArrayList<Publicacion> conferencias = new ArrayList();
+        
+        for(Publicacion p : listaPublicaciones){
+            
+            if(p.getClass().getName().equals("entregaBiblioteca.Conferencia")){
+                conferencias.add(p);
+            }
+            
+        }
+        
+        return conferencias;
+    }
+    
+    public void autores(){
+        
+        Map<Autor,ArrayList<Publicacion>> mapa = new HashMap<>();
+        
+        
+        for(Publicacion p : listaPublicaciones){
+            
+            for (int i = 0; i < p.listaAutores.size(); i++) {
+                
+                ArrayList<Publicacion> publicacionesAutor = publicacionesAutor(p.listaAutores.get(i));
+                
+                mapa.put(p.listaAutores.get(i), publicacionesAutor);
+            }   
+            
+        }
+        
+        
+        
+        Iterator it = mapa.keySet().iterator();
+        while(it.hasNext()){
+            Autor key  = (Autor) it.next();
+            System.out.println("Autor: "+key + ", Publicaciones: "+mapa.get(key));
+        }
+        
+    }
+    
+    /**
+     * Devuelve una lista con las publicaciones del autor recibido 
+     * @param a Recibe un autor al que buscar sus publicaciones
+     * @return Devuelve la lista de publicaciones del autor
+     */
+    public ArrayList<Publicacion> publicacionesAutor(Autor a){
+        
+        ArrayList<Publicacion> publicacionesAutor = new ArrayList();
+        
+        for(Publicacion p : listaPublicaciones){
+            
+            if(p.listaAutores.contains(a)){
+                publicacionesAutor.add(p);
+            }
+            
+        }
+        
+        return publicacionesAutor;
         
     }
  
@@ -197,7 +381,9 @@ public final class Biblioteca {
         //Crea una biblioteca con las publicaciones recibidas en el archivo "publicaciones.txt"
         Biblioteca biblio = new Biblioteca("publicaciones.txt");
         System.out.println(biblio);
-        
+        //biblio.agregarPublicacion();
+        //System.out.println(biblio);
+        biblio.autores();
     }
     
 
