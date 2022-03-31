@@ -9,11 +9,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeMap;
 
 /**
  *
@@ -167,6 +171,11 @@ public final class Biblioteca {
         
     }
     
+    /**
+     * Devuelve el género de la publicación dependiendo del carácter introducido
+     * @param genero Recibe un carácter que hace referencia al género
+     * @return Devuelve una cadena con el nombre completo del género
+     */
     public String generos(char genero){
         
         String salida = "";
@@ -272,6 +281,7 @@ public final class Biblioteca {
                     numRegistroL++; 
                     break;
                 case 'C':
+                    
                     break;
                 case 'S':
                     System.out.println("SALIENDO...");
@@ -314,6 +324,10 @@ public final class Biblioteca {
         
     }
     
+    /**
+     * Filtra las publicaciones que son de tipo Conferencia
+     * @return Devuelve una lista de publicaciones que son conferencias
+     */
     public ArrayList<Publicacion> listadoConferencias(){
         
         ArrayList<Publicacion> conferencias = new ArrayList();
@@ -329,29 +343,47 @@ public final class Biblioteca {
         return conferencias;
     }
     
+    /**
+     * Imprime por pantalla las publicaciones de cada autor. Crea un mapa de autores y lista de publicaciones de cada uno
+     */
     public void autores(){
         
         Map<Autor,ArrayList<Publicacion>> mapa = new HashMap<>();
-        
-        
+              
+        //Recorremos todas las publicaciones
         for(Publicacion p : listaPublicaciones){
             
+            //Por cada publicación, recorremos la lista de autores de esta
             for (int i = 0; i < p.listaAutores.size(); i++) {
                 
+                //Creamos una lista para almacenar las publicaciones del autor del índice. La lista se rellena con el método publicacionesAutor(), y se crea la entrada en el mapa
                 ArrayList<Publicacion> publicacionesAutor = publicacionesAutor(p.listaAutores.get(i));
                 
                 mapa.put(p.listaAutores.get(i), publicacionesAutor);
+                    
             }   
             
         }
         
+        //Elimina entradas repetidas del mapa
+        Collection list = mapa.values();
+        for(Iterator itr = list.iterator(); itr.hasNext();){
+            if(Collections.frequency(list, itr.next())>1){
+                itr.remove();
+            }
+        }
         
-        
+        //Imprime el mapa sin las entradas repetidas
         Iterator it = mapa.keySet().iterator();
         while(it.hasNext()){
             Autor key  = (Autor) it.next();
-            System.out.println("Autor: "+key + ", Publicaciones: "+mapa.get(key));
+            ArrayList<Publicacion> value = mapa.get(key);
+            
+            System.out.println("Autor: "+key +"\n"+ "Publicaciones: "+value+"\n");
+            
+            
         }
+        
         
     }
     
@@ -366,9 +398,12 @@ public final class Biblioteca {
         
         for(Publicacion p : listaPublicaciones){
             
-            if(p.listaAutores.contains(a)){
-                publicacionesAutor.add(p);
+            for (int i = 0; i < p.listaAutores.size(); i++) {
+                if(p.listaAutores.get(i).getNombre().equals(a.getNombre()) && p.listaAutores.get(i).getApellidos().equals(a.getApellidos())){
+                    publicacionesAutor.add(p);
+                }
             }
+            
             
         }
         
@@ -384,6 +419,7 @@ public final class Biblioteca {
         //biblio.agregarPublicacion();
         //System.out.println(biblio);
         biblio.autores();
+        
     }
     
 

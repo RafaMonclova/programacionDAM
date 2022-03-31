@@ -30,6 +30,45 @@ abstract public class Publicacion {
     
     abstract public boolean buscaPalabra(String palabra);
 
+    public String generos(String genero){
+        
+        String salida = "";
+        
+        switch(genero){
+            
+            case "B":
+                salida += "Ciencias biológicas";
+                break;
+            case "S":
+                salida += "Ciencias de la salud y deporte";
+                break;
+            case "M":
+                salida += "Matemáticas";
+                break;
+            case "T":
+                salida += "Tecnología";
+                break;
+            case "H":
+                salida += "Historia, cultura y sociedad";
+                break;
+            case "G":
+                salida += "Ciencias de la tierra y el espacio";
+                break;
+            case "F":
+                salida += "Física y química";
+                break;
+            case "A":
+                salida += "Artes y oficios";
+                break;
+            case "I":
+                salida += "Informática";
+                break;
+            
+        }
+        
+        return salida;
+        
+    }
 
     @Override
     public String toString() {

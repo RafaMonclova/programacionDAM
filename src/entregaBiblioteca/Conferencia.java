@@ -39,7 +39,7 @@ public class Conferencia extends Publicacion{
 
     @Override
     public String toString() {
-        return "[Conferencia]"+" " + "["+numRegistro+"]" + titulo + listaAutores + ", " + fechaPublicacion + ", " + nombre;
+        return "[Conferencia]"+" " + "["+numRegistro+"]" + titulo + listaAutores + ", " + fechaPublicacion + ", " + generos(genero) + ", " + nombre + ", " + ubicacion;
     }
     
     

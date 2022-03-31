@@ -41,7 +41,7 @@ public class Libro extends Publicacion{
 
     @Override
     public String toString() {
-        return "[Libro]"+" " + "["+numRegistro+"]" + titulo + listaAutores + ", " + fechaPublicacion + ", " + ISBN;
+        return "[Libro]"+" " + "["+numRegistro+"]" + titulo + listaAutores + ", " + fechaPublicacion + ", " + generos(genero) +", ISBN: "+ ISBN + ", Precio: "+coste + ". Descripción: "+descripcion;
     }
     
     
