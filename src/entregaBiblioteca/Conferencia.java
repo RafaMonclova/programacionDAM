@@ -24,7 +24,9 @@ public class Conferencia extends Publicacion{
     @Override
     public boolean buscaPalabra(String palabra) {
         boolean aparece = false;
-        if(titulo.contains(palabra) || listaAutores.contains(palabra)){
+        
+        for (int i = 0; i < listaAutores.size(); i++) {
+            if(titulo.contains(palabra) || listaAutores.get(i).getNombre().equals(palabra) || listaAutores.get(i).getApellidos().equals(palabra)){
             
             aparece = true;
             
@@ -32,6 +34,10 @@ public class Conferencia extends Publicacion{
         else if(nombre.contains(palabra) || ubicacion.contains(palabra)){
             aparece = true;
         }
+            
+        }
+        
+        
         
         return aparece;
         
@@ -39,7 +45,7 @@ public class Conferencia extends Publicacion{
 
     @Override
     public String toString() {
-        return "[Conferencia]"+" " + "["+numRegistro+"]" + titulo + listaAutores + ", " + fechaPublicacion + ", " + generos(genero) + ", " + nombre + ", " + ubicacion;
+        return "[Conferencia]"+" " + "["+numRegistro+"]" + titulo + listaAutores + ", " + fechaPublicacion + ", " + genero + ", " + nombre + ", " + ubicacion;
     }
     
     

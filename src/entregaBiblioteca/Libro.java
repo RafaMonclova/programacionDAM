@@ -26,7 +26,9 @@ public class Libro extends Publicacion{
     @Override
     public boolean buscaPalabra(String palabra) {
         boolean aparece = false;
-        if(titulo.contains(palabra) || listaAutores.contains(palabra)){
+        
+        for (int i = 0; i < listaAutores.size(); i++) {
+            if(titulo.contains(palabra) || listaAutores.get(i).getNombre().equals(palabra) || listaAutores.get(i).getApellidos().equals(palabra)){
             
             aparece = true;
             
@@ -34,6 +36,10 @@ public class Libro extends Publicacion{
         else if(descripcion.contains(palabra)){
             aparece = true;
         }
+            
+        }
+        
+        
         
         return aparece;
         
@@ -41,7 +47,7 @@ public class Libro extends Publicacion{
 
     @Override
     public String toString() {
-        return "[Libro]"+" " + "["+numRegistro+"]" + titulo + listaAutores + ", " + fechaPublicacion + ", " + generos(genero) +", ISBN: "+ ISBN + ", Precio: "+coste + ". Descripción: "+descripcion;
+        return "[Libro]"+" " + "["+numRegistro+"]" + titulo + listaAutores + ", " + fechaPublicacion + ", " + genero +", ISBN: "+ ISBN + ", Precio: "+coste + ". Descripción: "+descripcion;
     }
     
     

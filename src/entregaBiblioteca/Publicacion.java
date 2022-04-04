@@ -23,13 +23,18 @@ abstract public class Publicacion {
         this.numRegistro = numRegistro;
         this.titulo = titulo;   
         this.listaAutores = listaAutores;
-        this.genero = genero;
+        this.genero = generos(genero);
         this.fechaPublicacion = fechaPublicacion;
     }
     
     
     abstract public boolean buscaPalabra(String palabra);
 
+    /**
+     * Asigna el nombre completo del género de la publicación recibiendo una letra
+     * @param genero Recibe la letra del género
+     * @return Devuelve una cadena con el género que le corresponde
+     */
     public String generos(String genero){
         
         String salida = "";

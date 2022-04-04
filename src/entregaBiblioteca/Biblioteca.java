@@ -171,48 +171,6 @@ public final class Biblioteca {
         
     }
     
-    /**
-     * Devuelve el género de la publicación dependiendo del carácter introducido
-     * @param genero Recibe un carácter que hace referencia al género
-     * @return Devuelve una cadena con el nombre completo del género
-     */
-    public String generos(char genero){
-        
-        String salida = "";
-        
-        switch(genero){
-            
-            case 'B':
-                salida += "Ciencias biológicas";
-                break;
-            case 'S':
-                salida += "Ciencias de la salud y deporte";
-                break;
-            case 'M':
-                salida += "Matemáticas";
-                break;
-            case 'T':
-                salida += "Tecnología";
-                break;
-            case 'H':
-                salida += "Historia, cultura y sociedad";
-                break;
-            case 'G':
-                salida += "Ciencias de la tierra y el espacio";
-                break;
-            case 'F':
-                salida += "Física y química";
-                break;
-            case 'A':
-                salida += "Artes y oficios";
-            case 'I':
-                salida += "Informática";
-            
-        }
-        
-        return salida;
-        
-    }
     
     /**
      * Añade una nueva publicación a la biblioteca
@@ -264,9 +222,7 @@ public final class Biblioteca {
                     System.out.println("Artes y oficios (A)");
                     
                     System.out.println("Introduzca el género:");
-                    char generoChar = sc.next().charAt(0);
-                    String generoL = generos(generoChar);
-                    
+                    String generoL = sc.nextLine();
                     System.out.println("ISBN:");
                     long isbn = sc.nextLong();
                     System.out.println("Costo:");
@@ -281,10 +237,59 @@ public final class Biblioteca {
                     numRegistroL++; 
                     break;
                 case 'C':
+                    int numRegistroC = listaPublicaciones.size();
+                    sc.nextLine();
+                    System.out.println("Título:");
+                    String tituloC = sc.nextLine();
+                    System.out.println("Cuántos autores tiene?");
+                    int numAutoresC = sc.nextInt();
+                    sc.nextLine();
+                    ArrayList<Autor> listaAutoresC = new ArrayList();
+                    for (int i = 0; i < numAutoresC; i++) {
+                        System.out.println("Nombre autor "+(i+1));
+                        String nombreC = sc.nextLine();
+                        System.out.println("Apellidos autor "+(i+1));
+                        String apellidosC = sc.nextLine();
+                        Autor aC = new Autor(nombreC,apellidosC);
+                        listaAutoresC.add(aC);
+                    }
+                    
+                    System.out.println("Fecha de publicación: (dd/mm/aa)");
+                    String fechaStringC = sc.nextLine();
+                    String[] fechaCSeparado = fechaStringC.split("\\/");
+                    int diaC = Integer.parseInt(fechaCSeparado[0]);
+                    int mesC = Integer.parseInt(fechaCSeparado[1]); 
+                    int añoC = Integer.parseInt(fechaCSeparado[2]);
+                    
+                    Fecha fechaC = new Fecha(diaC,mesC,añoC);
+                    
+                    System.out.println("Géneros:");
+                    System.out.println("Ciencias biológicas (B)");
+                    System.out.println("Ciencias de la salud y el deporte (S)");
+                    System.out.println("Matemáticas (M)");
+                    System.out.println("Tecnología (T)");
+                    System.out.println("Historia, cultura y sociedad (H)");
+                    System.out.println("Informática (I)");
+                    System.out.println("Ciencias de la tierra y el espacio (G)");
+                    System.out.println("Física y química (F)");
+                    System.out.println("Artes y oficios (A)");
+                    
+                    System.out.println("Introduzca el género:");
+                    String generoC = sc.nextLine();
+                    
+                    System.out.println("Introduzca el nombre de la conferencia");
+                    String nombre = sc.nextLine();
+                    System.out.println("Introduzca la ubicación");
+                    String ubicacion = sc.nextLine();
+                    
+                    Conferencia conferencia = new Conferencia("R"+numRegistroC,tituloC,listaAutoresC,fechaC,generoC,nombre,ubicacion);
+                    listaPublicaciones.add(conferencia);
+                    
+                    numRegistroC++;
                     
                     break;
                 case 'S':
-                    System.out.println("SALIENDO...");
+                    System.out.println("VOLVIENDO AL MENÚ...");
                     break;
                 default:
                     System.out.println("Opción inválida. Introduzca: (L)Libro, (C)Conferencia");
@@ -415,10 +420,63 @@ public final class Biblioteca {
         
         //Crea una biblioteca con las publicaciones recibidas en el archivo "publicaciones.txt"
         Biblioteca biblio = new Biblioteca("publicaciones.txt");
-        System.out.println(biblio);
-        //biblio.agregarPublicacion();
-        //System.out.println(biblio);
-        biblio.autores();
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("------------------------------------");
+        System.out.println("--BIBLIOTECA CECILIO JIMÉNEZ RUEDA--");
+        System.out.println("------------------------------------");
+   
+        int opcion;
+        
+        
+        do {
+            System.out.println("1.Mostrar publicaciones");
+            System.out.println("2.Añadir publicación");
+            System.out.println("3.Buscar publicación");
+            System.out.println("4.Mostrar autores registrados");
+            System.out.println("5.Listado de conferencias");
+            System.out.println("0.SALIR");
+            System.out.println("Introduzca una opción:");
+            opcion = sc.nextInt();
+            sc.nextLine();
+            switch(opcion){
+                
+                case 1:
+                    System.out.println("1.Mostrar publicaciones");
+                    System.out.println(biblio);
+                    break;
+                case 2:
+                    System.out.println("2.Añadir publicación");
+                    biblio.agregarPublicacion();
+                    break;
+                case 3:
+                    System.out.println("3.Buscar publicación");
+                    System.out.println("Introduzca una palabra clave para la búsqueda:");
+                    String palabraClave = sc.nextLine();
+                    System.out.println(biblio.buscarPublicacion(palabraClave));
+                    break;
+                case 4:
+                    System.out.println("4.Mostrar autores registrados");
+                    biblio.autores();
+                    break;
+                case 5:
+                    System.out.println("5.Listado de conferencias");
+                    System.out.println(biblio.listadoConferencias());
+                    break;
+                case 0:
+                    System.out.println("SALIENDO...");
+                    break;
+                default:
+                    System.out.println("ERROR, introduzca una opción válida(1-5)");
+                    break;
+                
+         
+            }
+            
+            
+        } while (opcion != 0);
+        
+   
         
     }
     
