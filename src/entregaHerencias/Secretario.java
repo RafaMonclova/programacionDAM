@@ -116,7 +116,9 @@ public class Secretario extends Empleado{
     
     @Override
     public double liquidoAPercibir(){
-        return antiguedad * 0.05;
+        //Aumento anual del 5%
+        double aumentoAnual = antiguedad * 0.05;
+        return salario + aumentoAnual;
     }
 
     public boolean isDespacho() {

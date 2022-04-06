@@ -110,9 +110,13 @@ abstract public class Empleado {
         System.out.println("CONTACTO: "+telefono);
         System.out.println("SALARIO: "+salario);
         System.out.println("================================");
-        System.out.println("SUPERVISOR:");
-        if(supervisor != null)
-            supervisor.imprimir();
+        System.out.println("--SUPERVISOR--");
+        if(supervisor != null){
+            System.out.println("DNI: "+supervisor.getDNI());
+            System.out.println("NOMBRE: "+supervisor.getNombre());
+            System.out.println("APELLIDOS: "+supervisor.getApellidos());
+            //supervisor.imprimir();
+        }    
         System.out.println("================================");
         
     }
@@ -128,9 +132,10 @@ abstract public class Empleado {
     
     public double liquidoAPercibir(){
         
-        //calcular porcentaje con años antiguedad
-        
-        return salario;
+        //Aumento anual es 0
+        double aumentoAnual = antiguedad * 0;
+        //Devuelve el salario base
+        return salario + aumentoAnual;
     }
 
     public String getNombre() {

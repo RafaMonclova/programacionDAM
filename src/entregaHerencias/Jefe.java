@@ -173,7 +173,9 @@ public class Jefe extends Empleado{
     
     @Override
     public double liquidoAPercibir(){
-        return antiguedad * 0.2;
+        //Aumento anual del 20%
+        double aumentoAnual = antiguedad * 0.2;
+        return salario + aumentoAnual;
     }
     
     @Override
@@ -184,11 +186,19 @@ public class Jefe extends Empleado{
         
         System.out.println("DESPACHO "+despacho);
         System.out.println("================================");
-        System.out.println("SECRETARIO: ");
-        secretarioSupervisa.imprimir();
-        System.out.println("LISTA DE VENDEDORES: ");
+        System.out.println("--SECRETARIO--");
+        System.out.println("DNI: "+secretarioSupervisa.getDNI());
+        System.out.println("NOMBRE: "+secretarioSupervisa.getNombre());
+        System.out.println("APELLIDOS: "+secretarioSupervisa.getApellidos());
+        //secretarioSupervisa.imprimir();
+        System.out.println("================================");
+        System.out.println("--LISTA DE VENDEDORES--");
         for(Empleado v : listaVendedores){
-            v.imprimir();
+            System.out.println("DNI: "+v.getDNI());
+            System.out.println("NOMBRE: "+v.getNombre());
+            System.out.println("APELLIDOS: "+v.getApellidos());
+            System.out.println("--------------------------------");
+            //v.imprimir();
         }
         System.out.println("================================");
         
