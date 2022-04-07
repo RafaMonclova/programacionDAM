@@ -159,7 +159,7 @@ public final class Biblioteca {
     @Override
     public String toString() {
         
-        String salida = "Biblioteca Cecilio Jimenez Rueda \n" ;
+        String salida = "--LISTADO DE PUBLICACIONES REGISTRADAS-- \n" ;
         
         for(Publicacion p : listaPublicaciones){
             
@@ -174,6 +174,7 @@ public final class Biblioteca {
     
     /**
      * Añade una nueva publicación a la biblioteca
+     * Dependiendo si es libro o conferencia, pide diferentes datos, crea el objeto y lo añade a la lista
      */
     public void agregarPublicacion(){
         
@@ -184,13 +185,14 @@ public final class Biblioteca {
             tipo = sc.next().charAt(0);
             switch(tipo){
                 case 'L':
-                    int numRegistroL = listaPublicaciones.size();
+                    int numRegistroL = listaPublicaciones.size();//El número de registro es el tamaño de la lista actual, para continuar desde el último registro
                     sc.nextLine();
                     System.out.println("Título:");
                     String tituloL = sc.nextLine();
                     System.out.println("Cuántos autores tiene?");
                     int numAutoresL = sc.nextInt();
                     sc.nextLine();
+                    //Se crea la lista de autores con la cantidad introducida, se piden sus datos y se añaden a dicha lista
                     ArrayList<Autor> listaAutoresL = new ArrayList();
                     for (int i = 0; i < numAutoresL; i++) {
                         System.out.println("Nombre autor "+(i+1));
@@ -200,7 +202,7 @@ public final class Biblioteca {
                         Autor aL = new Autor(nombreL,apellidosL);
                         listaAutoresL.add(aL);
                     }
-                    
+                    //La fecha recibida como cadena se divide, las partes que la forman se convierten a int y se crea el objeto de clase Fecha
                     System.out.println("Fecha de publicación: (dd/mm/aa)");
                     String fechaString = sc.nextLine();
                     String[] fechaLSeparado = fechaString.split("\\/");
@@ -234,16 +236,18 @@ public final class Biblioteca {
                     Libro libro = new Libro("R"+numRegistroL,tituloL,listaAutoresL,fechaL,generoL,isbn,costo,descripcion);
                     listaPublicaciones.add(libro);
                     
+                    //Se incrementa el numRegistro si se añaden más libros
                     numRegistroL++; 
                     break;
                 case 'C':
-                    int numRegistroC = listaPublicaciones.size();
+                    int numRegistroC = listaPublicaciones.size();//El número de registro es el tamaño de la lista actual, para continuar desde el último registro
                     sc.nextLine();
                     System.out.println("Título:");
                     String tituloC = sc.nextLine();
                     System.out.println("Cuántos autores tiene?");
                     int numAutoresC = sc.nextInt();
                     sc.nextLine();
+                    //Se crea la lista de autores con la cantidad introducida, se piden sus datos y se añaden a dicha lista
                     ArrayList<Autor> listaAutoresC = new ArrayList();
                     for (int i = 0; i < numAutoresC; i++) {
                         System.out.println("Nombre autor "+(i+1));
@@ -254,6 +258,7 @@ public final class Biblioteca {
                         listaAutoresC.add(aC);
                     }
                     
+                    //La fecha recibida como cadena se divide, las partes que la forman se convierten a int y se crea el objeto de clase Fecha
                     System.out.println("Fecha de publicación: (dd/mm/aa)");
                     String fechaStringC = sc.nextLine();
                     String[] fechaCSeparado = fechaStringC.split("\\/");
@@ -285,8 +290,8 @@ public final class Biblioteca {
                     Conferencia conferencia = new Conferencia("R"+numRegistroC,tituloC,listaAutoresC,fechaC,generoC,nombre,ubicacion);
                     listaPublicaciones.add(conferencia);
                     
+                    //Se incrementa el numRegistro si se añaden más conferencias
                     numRegistroC++;
-                    
                     break;
                 case 'S':
                     System.out.println("VOLVIENDO AL MENÚ...");
@@ -312,6 +317,7 @@ public final class Biblioteca {
      */
     public ArrayList<Publicacion> buscarPublicacion(String palabraClave){
         
+        //Se crea una lista de las publicaciones encontradas
         ArrayList<Publicacion> publicacionesEncontradas = new ArrayList();
         
         for(Publicacion p : listaPublicaciones){
@@ -324,7 +330,7 @@ public final class Biblioteca {
             
         }
         
-        //Collections.sort(publicacionesEncontradas);
+        Collections.sort(publicacionesEncontradas);
         return publicacionesEncontradas;
         
     }
@@ -335,10 +341,11 @@ public final class Biblioteca {
      */
     public ArrayList<Publicacion> listadoConferencias(){
         
+        //Se crea una lista para las conferencias
         ArrayList<Publicacion> conferencias = new ArrayList();
         
         for(Publicacion p : listaPublicaciones){
-            
+            //Cada vez que encuentre una publicación donde el nombre de la clase sea "entregaBiblioteca.Conferencia", se añade a la lista
             if(p.getClass().getName().equals("entregaBiblioteca.Conferencia")){
                 conferencias.add(p);
             }
@@ -364,6 +371,7 @@ public final class Biblioteca {
                 //Creamos una lista para almacenar las publicaciones del autor del índice. La lista se rellena con el método publicacionesAutor(), y se crea la entrada en el mapa
                 ArrayList<Publicacion> publicacionesAutor = publicacionesAutor(p.listaAutores.get(i));
                 
+                //Se guardan el autor como clave, y sus publicaciones como valor
                 mapa.put(p.listaAutores.get(i), publicacionesAutor);
                     
             }   
@@ -398,12 +406,13 @@ public final class Biblioteca {
      * @return Devuelve la lista de publicaciones del autor
      */
     public ArrayList<Publicacion> publicacionesAutor(Autor a){
-        
+        //Se crea una lista para las publicaciones del Autor a
         ArrayList<Publicacion> publicacionesAutor = new ArrayList();
         
         for(Publicacion p : listaPublicaciones){
             
             for (int i = 0; i < p.listaAutores.size(); i++) {
+                //Por cada publicación, se recorre la lista de autores. Si coinciden nombre y apellidos, se añade a las publicaciones del Autor a
                 if(p.listaAutores.get(i).getNombre().equals(a.getNombre()) && p.listaAutores.get(i).getApellidos().equals(a.getApellidos())){
                     publicacionesAutor.add(p);
                 }

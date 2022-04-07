@@ -1,11 +1,13 @@
 package entregaBiblioteca;
 
+import java.util.Date;
+
 /**
  *
  * @author RAFAEL MONCLOVA SUANO
  */
 
-public class Fecha {
+public class Fecha implements Comparable<Fecha>{
     private int dia;
     private int mes;
     private int anio;
@@ -49,4 +51,19 @@ public class Fecha {
     public String toString(){
         return String.format("%d/%d/%d", dia, mes, anio);
     }
+
+    
+    @Override
+    public int compareTo(Fecha otra) {
+        
+        Date fechaObjeto = new Date(anio, mes, dia);
+        Date fechaOtra = new Date(otra.anio, otra.mes, otra.dia);
+        
+        return fechaObjeto.compareTo(fechaOtra);
+
+        
+        
+    }
+    
+    
 }

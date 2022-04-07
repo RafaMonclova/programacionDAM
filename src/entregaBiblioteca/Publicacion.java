@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author RAFAEL MONCLOVA SUANO
  */
-abstract public class Publicacion {
+abstract public class Publicacion implements Comparable<Publicacion>{
     
     protected String numRegistro;
     protected String titulo;
@@ -73,6 +73,12 @@ abstract public class Publicacion {
         
         return salida;
         
+    }
+    
+    //Las publicaciones se comparan por fecha de publicación
+    @Override
+    public int compareTo(Publicacion otra){
+        return this.fechaPublicacion.compareTo(otra.fechaPublicacion);
     }
 
     @Override
