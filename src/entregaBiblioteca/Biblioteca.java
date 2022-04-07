@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
@@ -178,6 +179,8 @@ public final class Biblioteca {
      */
     public void agregarPublicacion(){
         
+        try{
+            
         Scanner sc = new Scanner(System.in);
         char tipo;
         do {
@@ -306,7 +309,10 @@ public final class Biblioteca {
             
         } while (tipo!='S');
         
-        
+        }catch(InputMismatchException ex){
+            System.out.println("Error en el valor recibido, inténtelo de nuevo");
+        }
+           
         
     }
     
