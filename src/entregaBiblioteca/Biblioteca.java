@@ -392,8 +392,10 @@ public final class Biblioteca {
             Autor key  = (Autor) it.next();
             ArrayList<Publicacion> value = mapa.get(key);
             
-            System.out.println("Autor: "+key +"\n"+ "Publicaciones: "+value+"\n");
-            
+            //Solo se muestran los autores con más de una publicación
+            if(value.size()> 1){
+                System.out.println("Autor: "+key +"\n"+ "Publicaciones: "+value+"\n");
+            }      
             
         }
         
