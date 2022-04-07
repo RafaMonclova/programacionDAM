@@ -52,7 +52,7 @@ public class Fecha implements Comparable<Fecha>{
         return String.format("%d/%d/%d", dia, mes, anio);
     }
 
-    
+    //Compara fechas
     @Override
     public int compareTo(Fecha otra) {
         
