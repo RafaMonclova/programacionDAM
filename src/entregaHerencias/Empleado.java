@@ -28,6 +28,7 @@ abstract public class Empleado {
         this.antiguedad = antiguedad;
         this.telefono = telefono;
         this.salario = salario;
+        this.salario = liquidoAPercibir();
         
     }
     

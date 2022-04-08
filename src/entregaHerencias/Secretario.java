@@ -16,6 +16,7 @@ public class Secretario extends Empleado{
     
     public Secretario(boolean despacho, int fax, String nombre, String apellidos, String DNI, String direccion, int antiguedad, int telefono, double salario) {
         super(nombre, apellidos, DNI, direccion, antiguedad, telefono, salario);
+        super.salario = liquidoAPercibir();
         this.despacho = despacho;
         this.fax = fax;
     }

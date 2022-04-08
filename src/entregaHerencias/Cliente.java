@@ -53,7 +53,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "DNI=" + DNI + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono;
+        return "DNI:" + DNI + ", Nombre:" + nombre + ", Apellidos:" + apellidos + ",Telefono:" + telefono;
     }
     
     

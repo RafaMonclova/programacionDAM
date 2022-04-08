@@ -23,7 +23,9 @@ public class Main {
     }
     
     
-    
+    /**
+     * Imprime los datos de los empleados registrados
+     */
     public static void mostrar(){
         
         for(Empleado e : listaEmpleados){
@@ -34,49 +36,168 @@ public class Main {
         
     }
     
+    /**
+     * Imprime los datos de un empleado
+     * @param DNI Recibe el DNI del empleado a mostrar
+     */
     public static void mostrar(String DNI){
-        
+        boolean encontrado = false;
         for(Empleado e : listaEmpleados){
-            if(e.getDNI().equals(DNI))
+            if(e.getDNI().equals(DNI)){
+                encontrado = true;
                 e.imprimir();
+            }
+                
                 
         }
         
+        if(!encontrado)
+            System.out.println("No existe ningún empleado con el DNI introducido.");
+        
     }
     
-    public static void filtrar(char cargo){
+    /**
+     * Busca un secretario por su DNI
+     * @param dni Recibe el DNI del secretario a buscar
+     * @return Devuelve el secretario encontrado con el DNI dado
+     */
+    public static Empleado buscaSecretario(String dni){
+   
+        Empleado secretario = null;
+        for(Empleado e : filtrarSecretarios()){
+            
+           if(e.getDNI().equals(dni)){
+               secretario = e;
+           }
+             
+            
+        }
+       
+        return secretario;
+        
+    }
+    
+    /**
+     * Busca un vendedor por su DNI
+     * @param dni Recibe el DNI del vendedor a buscar
+     * @return Devuelve el vendedor encontrado con el DNI dado
+     */
+    public static Empleado buscaVendedor(String dni){
+   
+        Empleado vendedor = null;
+        for(Empleado e : filtrarVendedores()){
+            
+           if(e.getDNI().equals(dni)){
+               vendedor = e;
+           }
+           
+            
+        }
+       
+        return vendedor;
+        
+    }
+    
+    /**
+     * Busca un jefe por su DNI
+     * @param dni Recibe el DNI del jefe a buscar
+     * @return Devuelve el jefe encontrado con el DNI dado
+     */
+    public static Empleado buscaJefe(String dni){
+   
+        Empleado jefe = null;
+        for(Empleado e : filtrarJefes()){
+            
+           if(e.getDNI().equals(dni)){
+               jefe = e;
+           }
+            
+        }
+       
+        return jefe;
+        
+    }
+    
+    /**
+     * Filtra los empleados de tipo Secretario de la lista de empleados
+     * @return Devuelve una lista con los secretarios registrados
+     */
+    public static ArrayList<Empleado> filtrarSecretarios(){
+        
+        ArrayList<Empleado> secretariosEmpresa = new ArrayList();
+        
+            for(Empleado e : listaEmpleados){
+                if(e.getClass().getName().equals("entregaHerencias.Secretario")){
+                    secretariosEmpresa.add(e);
+                        
+                }
+            }
+                
+            return secretariosEmpresa;
+         
+        
+    }
+    
+    /**
+     * Filtra los empleados de tipo Vendedor de la lista de empleados
+     * @return Devuelve una lista con los vendedores registrados
+     */
+    public static ArrayList<Empleado> filtrarVendedores(){
         
         ArrayList<Empleado> vendedoresEmpresa = new ArrayList();
-        ArrayList<Empleado> secretariosEmpresa = new ArrayList();
-        ArrayList<Empleado> jefesEmpresa = new ArrayList();
-
-            for(Empleado empleado : listaEmpleados){
-                if(empleado.getClass().getName().equals("entregaHerencias.Vendedor")){
-                    vendedoresEmpresa.add(empleado);
+        
+            for(Empleado e : listaEmpleados){
+                if(e.getClass().getName().equals("entregaHerencias.Vendedor")){
+                    vendedoresEmpresa.add(e);
+                        
                 }
-                if(empleado.getClass().getName().equals("entregaHerencias.Secretario")){
-                    secretariosEmpresa.add(empleado);
-                }
-                if(empleado.getClass().getName().equals("entregaHerencias.Jefe")){
-                    jefesEmpresa.add(empleado);
-                }
-                    
             }
+                
+            return vendedoresEmpresa;
+         
+        
+    }
+    
+    /**
+     * Filtra los empleados de tipo Jefe de la lista de empleados
+     * @return Devuelve una lista con los jefes registrados
+     */
+    public static ArrayList<Empleado> filtrarJefes(){
+        
+        ArrayList<Empleado> jefesEmpresa = new ArrayList();
+        
+            for(Empleado e : listaEmpleados){
+                if(e.getClass().getName().equals("entregaHerencias.Jefe")){
+                    jefesEmpresa.add(e);
+                        
+                }
+            }
+                
+            return jefesEmpresa;
+         
+        
+    }
+    
+    /**
+     * Imprime los datos de los empleados según su cargo
+     * @param cargo Recibe el cargo de los empleados a imprimir
+     */
+    public static void filtrar(char cargo){
         
         switch(cargo){
             
             case 's':
-                for(Empleado e : secretariosEmpresa){
+                for(Empleado e : filtrarSecretarios()){
                     e.imprimir();
                 }
                 break;
             case 'v':
-                for(Empleado e : vendedoresEmpresa){
+                for(Empleado e : filtrarVendedores()){
                     e.imprimir();
                 }
                 break;
             case 'j':
-                for(Empleado e : jefesEmpresa){
+                for(Empleado e : filtrarJefes()){
                     e.imprimir();
                 }
                 break;
@@ -85,8 +206,10 @@ public class Main {
             
     }
     
-    
-    //Devuelve un coche con los datos introducidos
+    /**
+     * Crea un coche pidiendo los datos por teclado
+     * @return Devuelve un coche con los datos introducidos
+     */
     public static Coche creaCoche(){
         Scanner sc = new Scanner(System.in);
         System.out.println("DATOS DEL VEHÍCULO");
@@ -102,24 +225,35 @@ public class Main {
         
     }
     
-    //Establece un supervisor al empleado indicado
+    /**
+     * Establece un supervisor al empleado indicado
+     * @param empleado Recibe el empleado al que asignar un supervisor
+     * @param dniSupervisor Recibe el dni del supervisor 
+     */
     public static void supervisor(Empleado empleado, String dniSupervisor){
-        
+        boolean supervisorExiste = false;
         for(Empleado e : listaEmpleados){
             if(e.getDNI().equals(dniSupervisor)){
+                supervisorExiste = true;
                 empleado.cambiarSupervisor(e);
                 break;
-            }
-            
+            } 
                         
         }
+        
+        if(!supervisorExiste)
+            System.out.println("No existe ningún empleado con ese DNI, se dará de alta sin supervisor");
     }
     
-    //Crea un empleado del cargo recibido y lo añade a la lista de empleados
+    /**
+     * Crea un empleado del cargo recibido y lo añade a la lista de empleados
+     * @param cargo Recibe el cargo del empleado a dar de alta
+     */
     public static void altaEmpleado(char cargo){
         Scanner sc = new Scanner(System.in);
         switch(cargo){
             
+            //Secretario
             case 's':
                 System.out.println("Tiene despacho?");
                 char despachoSiNo = sc.next().charAt(0);
@@ -148,9 +282,10 @@ public class Main {
                 System.out.println("Introduce su salario:");
                 int salarioS = sc.nextInt();
                 
-                
+                //Se crea el secretario
                 Secretario s = new Secretario(despacho, fax, nombreS, apellidosS, dniS, direccionS, antiguedadS, telefonoS, salarioS);
                 
+                //Asignamos el supervisor si se introduce 's'
                 System.out.println("Tiene supervisor? (s/n)");
                 char supervisorSiNoS = sc.next().charAt(0);
                 sc.nextLine();
@@ -160,10 +295,15 @@ public class Main {
                     supervisor(s,dniSupervisorS);
                     
                 }
-                        
+                
+                //Se añade a la lista de empleados
                 listaEmpleados.add(s);
+                System.out.println("--Secretario registrado correctamente--");
                 break;
+                
+            //Vendedor    
             case 'v':
+                //Se crea un coche nuevo
                 Coche c = creaCoche(); 
                 
                 System.out.println("DATOS DEL EMPLEADO");
@@ -190,8 +330,27 @@ public class Main {
                 System.out.println("Introduce su salario:");
                 int salarioV = sc.nextInt();
                 
-                Vendedor v = new Vendedor(c,movil,areaVenta,porcentajeComision,nombreV,apellidosV,dniV,direccionV,antiguedadV,telefonoV,salarioV);
+                System.out.println("Cuántos clientes tendrá el vendedor?");
+                int numClientes = sc.nextInt();
+                sc.nextLine();
+                ArrayList<Cliente> clientesVendedor = new ArrayList();
+                for (int i = 0; i < numClientes; i++) {
+                    System.out.println("Introduce DNI del cliente");
+                    String dniCliente = sc.nextLine();
+                    System.out.println("Introduce nombre del cliente");
+                    String nombreCliente = sc.nextLine();
+                    System.out.println("Introduce apellidos del cliente");
+                    String apellidosCliente = sc.nextLine();
+                    System.out.println("Introduce teléfono del cliente");
+                    int telCliente = sc.nextInt();
+                    Cliente cliente = new Cliente(dniCliente, nombreCliente, apellidosCliente, telCliente);
+                    clientesVendedor.add(cliente);
+                }
                 
+                //Se crea el vendedor
+                Vendedor v = new Vendedor(c,movil,areaVenta,clientesVendedor,porcentajeComision,nombreV,apellidosV,dniV,direccionV,antiguedadV,telefonoV,salarioV);
+                
+                //Asignamos el supervisor si se introduce 's'
                 System.out.println("Tiene supervisor? (s/n)");
                 char supervisorSiNoV = sc.next().charAt(0);
                 sc.nextLine();
@@ -201,8 +360,12 @@ public class Main {
                     supervisor(v,dniSupervisorV);
                 }
                 
+                //Se añade a la lista de empleados
                 listaEmpleados.add(v);
+                System.out.println("--Vendedor registrado correctamente--");
                 break;
+                
+            //Jefe    
             case 'j':
                 System.out.println("Tiene despacho?");
                 char despachoSiNoJ = sc.next().charAt(0);
@@ -213,68 +376,46 @@ public class Main {
                 else
                     despachoJ = false;
                 
-                System.out.println("Introduce los datos del secretario al que supervisa:");
-                System.out.println("Tiene despacho?");
-                char despachoSiNoSJ = sc.next().charAt(0);
-                boolean despachoSJ;
-                if(despachoSiNoSJ == 's'){
-                    despachoSJ = true;
-                }
-                else
-                    despachoSJ = false;
-                
-                System.out.println("Introduce número de fax:");
-                int faxSJ = sc.nextInt();
                 sc.nextLine();
-                System.out.println("Introduce nombre:");
-                String nombreSJ = sc.nextLine();
-                System.out.println("Introduce apellidos:");
-                String apellidosSJ = sc.nextLine();
-                System.out.println("Introduce DNI:");
+                System.out.println("Introduce el dni del secretario al que supervisa");
                 String dniSJ = sc.nextLine();
-                System.out.println("Introduce dirección:");
-                String direccionSJ = sc.nextLine();
-                System.out.println("Introduce su antigüedad:");
-                int antiguedadSJ = sc.nextInt();
-                System.out.println("Introduce teléfono:");
-                int telefonoSJ = sc.nextInt();
-                System.out.println("Introduce su salario:");
-                int salarioSJ = sc.nextInt();
                 
+                //Si no existe un secretario con el DNI introducido, el método devuelve null, por lo que se pedirá el DNI hasta que corresponda con un secretario existente
+                while(buscaSecretario(dniSJ) == null){
+                    System.out.println("No existe el secretario, vuelva a escribir el DNI");
+                    dniSJ = sc.nextLine();
+                }
                 
-                Secretario sJ = new Secretario(despachoJ, faxSJ, nombreSJ, apellidosSJ, dniSJ, direccionSJ, antiguedadSJ, telefonoSJ, salarioSJ);
+                //El secretario encontrado se asigna a sJ
+                Secretario sJ = (Secretario)buscaSecretario(dniSJ);
                 
                 System.out.println("VENDEDORES DISPONIBLES:");
                 //Lista de vendedores que tendrá el jefe
                 ArrayList<Empleado> listaVendedoresJefe = new ArrayList();
-                //Lista con los vendedores de la empresa
-                ArrayList<Empleado> vendedoresEmpresa = new ArrayList();
                 
-                for(Empleado empleado : listaEmpleados){
-                    if(empleado.getClass().getName().equals("entregaHerencias.Vendedor")){
-                        empleado.imprimir();
-                        vendedoresEmpresa.add(empleado);
-                    }
-                    
-                }
+                //Mostramos los vendedores de la empresa
+                filtrar('v');
                 
                 System.out.println("Cuántos desea añadir a su cargo?");
                 int numVendedores = sc.nextInt();
                 sc.nextLine();
                 
                 for (int i = 0; i < numVendedores; i++) {
-                    
+                    //Se busca el vendedor con el dni introducido mediante buscaVendedor(String dni), y se añade a la lista de vendedores del jefe
                     System.out.println("Introduce el DNI del vendedor:");
                     String dniVendedor = sc.nextLine();
                     
-                    for(Empleado vendedor : vendedoresEmpresa){
-                        if(vendedor.getDNI().equals(dniVendedor)){
-                            listaVendedoresJefe.add(vendedor);
-                        }
+                    //Si no existe un vendedor con el DNI introducido, el método devuelve null, por lo que se pedirá el DNI hasta que corresponda con un vendedor existente
+                    while(buscaVendedor(dniVendedor) == null){
+                        System.out.println("No existe el vendedor, vuelva a escribir el DNI");
+                        dniVendedor = sc.nextLine();
                     }
+                    //Se añade el vendedor encontrado a la lista de vendedores del jefe
+                    listaVendedoresJefe.add(buscaVendedor(dniVendedor));
+                    
                     
                 }
-                
+                //Se crea un coche nuevo
                 Coche cJ = creaCoche();
                 
                 System.out.println("Introduce nombre:");
@@ -292,9 +433,12 @@ public class Main {
                 System.out.println("Introduce su salario:");
                 int salarioJ = sc.nextInt();
                 
+                //Se crea el jefe
                 Jefe j = new Jefe(despachoJ, sJ,listaVendedoresJefe, cJ, nombreJ, apellidosJ, dniJ, direccionJ, antiguedadJ, telefonoJ, salarioJ);
                 
+                //Se añade a la lista de empleados
                 listaEmpleados.add(j);
+                System.out.println("--Jefe registrado correctamente--");
                 
             break;
                
@@ -303,6 +447,10 @@ public class Main {
         
     }
     
+    /**
+     * Elimina a un empleado dado su DNI
+     * @param DNI Recibe el DNI del empleado a dar de baja
+     */
     public static void bajaEmpleado(String DNI){
         
         Iterator it = listaEmpleados.iterator();
@@ -312,7 +460,7 @@ public class Main {
                 it.remove();
             }
         }
-        
+        System.out.println("-Empleado dado de baja del sistema--");
     }
     
     
@@ -330,9 +478,12 @@ public class Main {
         //vendedores del jefe
         //Añadimos los vendedores a la lista de vendedores de j1 y a la lista de empleados
         ArrayList<Vendedor> listaVendedoresJ1 = new ArrayList();
-        Vendedor vj1 = new Vendedor(new Coche("1212TYU","KIA","RIO"), 987123467, "ZONA FRANCA", 10, "V1", "GARCÍA", "11111111A", "CALLE FLOR", 1, 968461285, 1200);
-        Vendedor vj2 = new Vendedor(new Coche("2121TYU","OPEL","CORSA"), 987773467, "ZONA NORTE", 21, "V2", "LÓPEZ", "22222222A", "CALLE ZARZA", 2, 968568321, 1200);
-        Vendedor vj3 = new Vendedor(new Coche("3434TYU","CITROEN","PICASSO"), 987123477, "ZONA FRANCA", 6, "V3", "GUTIÉRREZ", "33333333A", "CALLE CLAVEL", 3, 968661685, 1200);
+        ArrayList<Cliente> clientesV1 = new ArrayList();
+        ArrayList<Cliente> clientesV2 = new ArrayList();
+        ArrayList<Cliente> clientesV3 = new ArrayList();
+        Vendedor vj1 = new Vendedor(new Coche("1212TYU","KIA","RIO"), 987123467, "ZONA FRANCA",clientesV1, 10, "V1", "GARCÍA", "11111111A", "CALLE FLOR", 1, 968461285, 1200);
+        Vendedor vj2 = new Vendedor(new Coche("2121TYU","OPEL","CORSA"), 987773467, "ZONA NORTE",clientesV2, 21, "V2", "LÓPEZ", "22222222A", "CALLE ZARZA", 2, 968568321, 1200);
+        Vendedor vj3 = new Vendedor(new Coche("3434TYU","CITROEN","PICASSO"), 987123477, "ZONA FRANCA",clientesV3, 6, "V3", "GUTIÉRREZ", "33333333A", "CALLE CLAVEL", 3, 968661685, 1200);
         listaVendedoresJ1.add(vj1);
         listaEmpleados.add(vj1);
         listaVendedoresJ1.add(vj2);
@@ -346,17 +497,18 @@ public class Main {
         
         
         //MENÚ
-        System.out.println("1. Mostrar datos de los empleados");
-        System.out.println("2. Añadir empleado pidiendo datos");
-        System.out.println("3. Borrar empleado pidiendo datos");
-        System.out.println("4. Modificar datos de empleado");
-        System.out.println("5. Mostrar datos de un empleado dado su DNI");
-        System.out.println("6. Mostrar datos de todos los empleados del mismo tipo");
-        System.out.println("0. SALIR");
-        
-        
         int opcion;
         do {
+            System.out.println("===================");
+            System.out.println("--MENÚ PRINCIPAL--"); 
+            System.out.println("===================");
+            System.out.println("1. Mostrar datos de los empleados");
+            System.out.println("2. Añadir empleado pidiendo datos");
+            System.out.println("3. Borrar empleado pidiendo datos");
+            System.out.println("4. Modificar datos de empleado");
+            System.out.println("5. Mostrar datos de un empleado dado su DNI");
+            System.out.println("6. Mostrar datos de todos los empleados del mismo tipo");
+            System.out.println("0. SALIR");
             System.out.println("Introduce una opción: ");
             opcion = sc.nextInt();
             sc.nextLine();

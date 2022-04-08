@@ -19,11 +19,13 @@ public class Vendedor extends Empleado{
     protected double porcentajeComision;
 
     
-    public Vendedor(Coche coche, int movil, String areaVenta, double porcentajeComision, String nombre, String apellidos, String DNI, String direccion, int antiguedad, int telefono, double salario) {
+    public Vendedor(Coche coche, int movil, String areaVenta,ArrayList<Cliente> listaClientes ,double porcentajeComision, String nombre, String apellidos, String DNI, String direccion, int antiguedad, int telefono, double salario) {
         super(nombre, apellidos, DNI, direccion, antiguedad, telefono, salario);
+        super.salario = liquidoAPercibir();
         this.coche = coche;
         this.movil = movil;
         this.areaVenta = areaVenta;
+        this.listaClientes = listaClientes;
         this.porcentajeComision = porcentajeComision;
     }
 
@@ -43,7 +45,8 @@ public class Vendedor extends Empleado{
         System.out.println("9.MOVIL ");
         System.out.println("10.AREA DE VENTA ");
         System.out.println("11.PORCENTAJE DE COMISION");
-        System.out.println("12.SUPERVISOR");
+        System.out.println("12.CLIENTES");
+        System.out.println("13.SUPERVISOR");
         
         int opcion = sc.nextInt();
         sc.nextLine();
@@ -88,13 +91,11 @@ public class Vendedor extends Empleado{
                 System.out.println("Introduzca los datos del vehículo");
                 System.out.println("Introduzca la matrícula");
                 String matricula = sc.nextLine();
-                this.coche.setMatricula(matricula);
                 System.out.println("Introduzca la marca");
                 String marca = sc.nextLine();
-                this.coche.setMarca(marca);
                 System.out.println("Introduzca el modelo");
                 String modelo = sc.nextLine();
-                this.coche.setModelo(modelo);
+                cambiarCoche(matricula,marca,modelo);
                 break;    
             case 9:
                 System.out.println("Introduzca el móvil");
@@ -112,6 +113,43 @@ public class Vendedor extends Empleado{
                 setPorcentajeComision(porcentajeComision);
                 break;
             case 12:
+                System.out.println("--CLIENTES REGISTRADOS--");
+                System.out.println(listaClientes);
+                System.out.println("Qué desea realizar?");
+                System.out.println("1.Alta de cliente");
+                System.out.println("2.Baja de cliente");
+                int opcionCliente = sc.nextInt();
+                sc.nextLine();
+                switch(opcionCliente){
+                    
+                    case 1:
+                        System.out.println("1.Alta de cliente");
+                        System.out.println("DNI:");
+                        String dniCliente = sc.nextLine();
+                        System.out.println("NOMBRE:");
+                        String nombreCliente = sc.nextLine();
+                        System.out.println("APELLIDOS:");
+                        String apellidosCliente = sc.nextLine();
+                        System.out.println("TELÉFONO:");
+                        int telCliente = sc.nextInt();
+                        Cliente c = new Cliente(dniCliente,nombreCliente,apellidosCliente,telCliente);
+                        altaCliente(c);
+                        
+                        break;
+                    case 2:
+                        System.out.println("2.Baja de cliente");
+                        System.out.println("Introduce el DNI del cliente a dar de baja");
+                        String dniBaja = sc.nextLine();
+                        bajaCliente(dniBaja);
+                        
+                        break;
+                    default:
+                        System.out.println("Opción inválida.");
+                    
+                }
+                
+                break;
+            case 13:
                 System.out.println("Introduzca si tiene un supervisor (s/n)");
                 char siNo = sc.next().charAt(0);
                 sc.nextLine();
@@ -148,15 +186,23 @@ public class Vendedor extends Empleado{
        
     }
     
-    public void altaCliente(String DNI, String nombre, String apellidos, int telefono){
+    public void altaCliente(Cliente c){
         
-
-        Cliente c = new Cliente(DNI,nombre,apellidos,telefono);
-        if(listaClientes.contains(c.getDNI())){
-            System.out.println("Error, ya existe un cliente con ese DNI");
+        boolean existe = false;
+        for(Cliente cli : listaClientes){
+            
+            if(cli.getDNI().equals(c.getDNI())){
+                existe = true;
+                System.out.println("El cliente ya existe, no se añadirá.");
+                break;
+            }
+            
         }
-        else
+        
+        if(!existe)
             listaClientes.add(c);
+            System.out.println("--Cliente dado de alta correctamente--");
+        
         
     }
     
@@ -168,10 +214,11 @@ public class Vendedor extends Empleado{
             
             Cliente actual = it.next();
             if(actual.getDNI().equals(DNI)){
-                listaClientes.remove(actual);
+                it.remove();
             }
             
         }
+        System.out.println("--Cliente dado de baja correctamente--");
         
     }
     

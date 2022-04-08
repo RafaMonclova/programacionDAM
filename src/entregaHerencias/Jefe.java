@@ -20,6 +20,7 @@ public class Jefe extends Empleado{
 
     public Jefe(boolean despacho, Secretario secretarioSupervisa, ArrayList listaVendedores, Coche coche, String nombre, String apellidos, String DNI, String direccion, int antiguedad, int telefono, double salario) {
         super(nombre, apellidos, DNI, direccion, antiguedad, telefono, salario);
+        super.salario = liquidoAPercibir();
         this.despacho = despacho;
         this.secretarioSupervisa = secretarioSupervisa;
         this.listaVendedores = listaVendedores;
@@ -144,13 +145,11 @@ public class Jefe extends Empleado{
                 System.out.println("Introduzca los datos del vehículo");
                 System.out.println("Introduzca la matrícula");
                 String matricula = sc.nextLine();
-                this.coche.setMatricula(matricula);
                 System.out.println("Introduzca la marca");
                 String marca = sc.nextLine();
-                this.coche.setMarca(marca);
                 System.out.println("Introduzca el modelo");
                 String modelo = sc.nextLine();
-                this.coche.setModelo(modelo);
+                cambiarCoche(matricula,marca,modelo);
                 break;
                 
             case 12:
@@ -222,10 +221,10 @@ public class Jefe extends Empleado{
         
     }
     
-    public void altaVendedor(Coche coche, int movil, String areaVenta, double porcentajeComision, String nombre, String apellidos, String DNI, String direccion, int antiguedad, int telefono, double salario){
+    public void altaVendedor(Coche coche, int movil, String areaVenta,ArrayList<Cliente> listaClientes, double porcentajeComision, String nombre, String apellidos, String DNI, String direccion, int antiguedad, int telefono, double salario){
         
 
-        Vendedor v = new Vendedor(coche, movil, areaVenta, porcentajeComision, nombre, apellidos, DNI, direccion, antiguedad, telefono, salario);
+        Vendedor v = new Vendedor(coche, movil, areaVenta,listaClientes, porcentajeComision, nombre, apellidos, DNI, direccion, antiguedad, telefono, salario);
         if(listaVendedores.contains(v)){
             System.out.println("Error, ya existe un vendedor con ese DNI");
         }
