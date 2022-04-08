@@ -161,8 +161,8 @@ Sustituír la lista actual por vehículos en fichero (pedir nombre fichero)
                 case 5:
                     System.out.println("5.Añadir vehículos del fichero a la lista");
                     System.out.println("Introduce el nombre del fichero");
-                    String ficheroLeer = sc.nextLine();
-                    ArrayList<Vehiculo> vehiculosFichero = leerVehiculos(ficheroLeer);
+                    String ficheroAñadir = sc.nextLine();
+                    vehiculos.addAll(leerVehiculos(ficheroAñadir));
                     
                     
                     
@@ -170,6 +170,8 @@ Sustituír la lista actual por vehículos en fichero (pedir nombre fichero)
                 case 6: 
                     System.out.println("6.Sustituir la lista actual por los vehículos del fichero");
                     System.out.println("Introduce el nombre del fichero");
+                    String ficheroSustituir = sc.nextLine();
+                    vehiculos = leerVehiculos(ficheroSustituir);
                     break;
                 case 0:
                     System.out.println("SALIENDO...");
