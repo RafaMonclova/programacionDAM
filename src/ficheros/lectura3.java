@@ -27,14 +27,19 @@ public class lectura3 {
         FileReader is = null;
         
         try{
+            
             is = new FileReader(fichero);
             int c;
+            int posicion=0;
             int contadorVeces = 0;
             
             while((c = is.read()) != -1){
+                posicion++;
                 if((char)c == buscado){ 
                     contadorVeces++;
+                    System.out.println("posición: "+posicion);
                 }
+                    
                 
             }
             

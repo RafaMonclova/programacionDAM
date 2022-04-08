@@ -57,6 +57,66 @@ public class Main {
     }
     
     /**
+     * Filtra los empleados de tipo Secretario de la lista de empleados
+     * @return Devuelve una lista con los secretarios registrados
+     */
+    public static ArrayList<Empleado> filtrarSecretarios(){
+        
+        ArrayList<Empleado> secretariosEmpresa = new ArrayList();
+        
+            for(Empleado e : listaEmpleados){
+                if(e.getClass().getName().equals("entregaHerencias.Secretario")){
+                    secretariosEmpresa.add(e);
+                        
+                }
+            }
+                
+            return secretariosEmpresa;
+         
+        
+    }
+    
+    /**
+     * Filtra los empleados de tipo Vendedor de la lista de empleados
+     * @return Devuelve una lista con los vendedores registrados
+     */
+    public static ArrayList<Empleado> filtrarVendedores(){
+        
+        ArrayList<Empleado> vendedoresEmpresa = new ArrayList();
+        
+            for(Empleado e : listaEmpleados){
+                if(e.getClass().getName().equals("entregaHerencias.Vendedor")){
+                    vendedoresEmpresa.add(e);
+                        
+                }
+            }
+                
+            return vendedoresEmpresa;
+         
+        
+    }
+    
+    /**
+     * Filtra los empleados de tipo Jefe de la lista de empleados
+     * @return Devuelve una lista con los jefes registrados
+     */
+    public static ArrayList<Empleado> filtrarJefes(){
+        
+        ArrayList<Empleado> jefesEmpresa = new ArrayList();
+        
+            for(Empleado e : listaEmpleados){
+                if(e.getClass().getName().equals("entregaHerencias.Jefe")){
+                    jefesEmpresa.add(e);
+                        
+                }
+            }
+                
+            return jefesEmpresa;
+         
+        
+    }
+    
+    /**
      * Busca un secretario por su DNI
      * @param dni Recibe el DNI del secretario a buscar
      * @return Devuelve el secretario encontrado con el DNI dado
@@ -118,65 +178,6 @@ public class Main {
         
     }
     
-    /**
-     * Filtra los empleados de tipo Secretario de la lista de empleados
-     * @return Devuelve una lista con los secretarios registrados
-     */
-    public static ArrayList<Empleado> filtrarSecretarios(){
-        
-        ArrayList<Empleado> secretariosEmpresa = new ArrayList();
-        
-            for(Empleado e : listaEmpleados){
-                if(e.getClass().getName().equals("entregaHerencias.Secretario")){
-                    secretariosEmpresa.add(e);
-                        
-                }
-            }
-                
-            return secretariosEmpresa;
-         
-        
-    }
-    
-    /**
-     * Filtra los empleados de tipo Vendedor de la lista de empleados
-     * @return Devuelve una lista con los vendedores registrados
-     */
-    public static ArrayList<Empleado> filtrarVendedores(){
-        
-        ArrayList<Empleado> vendedoresEmpresa = new ArrayList();
-        
-            for(Empleado e : listaEmpleados){
-                if(e.getClass().getName().equals("entregaHerencias.Vendedor")){
-                    vendedoresEmpresa.add(e);
-                        
-                }
-            }
-                
-            return vendedoresEmpresa;
-         
-        
-    }
-    
-    /**
-     * Filtra los empleados de tipo Jefe de la lista de empleados
-     * @return Devuelve una lista con los jefes registrados
-     */
-    public static ArrayList<Empleado> filtrarJefes(){
-        
-        ArrayList<Empleado> jefesEmpresa = new ArrayList();
-        
-            for(Empleado e : listaEmpleados){
-                if(e.getClass().getName().equals("entregaHerencias.Jefe")){
-                    jefesEmpresa.add(e);
-                        
-                }
-            }
-                
-            return jefesEmpresa;
-         
-        
-    }
     
     /**
      * Imprime los datos de los empleados según su cargo
@@ -200,6 +201,9 @@ public class Main {
                 for(Empleado e : filtrarJefes()){
                     e.imprimir();
                 }
+                break;
+            default:
+                System.out.println("Cargo no válido.");
                 break;
             
         }    
