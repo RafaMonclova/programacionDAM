@@ -21,6 +21,11 @@ public class Conferencia extends Publicacion{
         this.ubicacion = ubicacion;
     }
 
+    /**
+     * Busca la palabra recibida en el titulo de la conferencia, nombre o apellidos de alguno de los autores de la conferencia. Si no la encuentra, la busca en el nombre o en la ubicación
+     * @param palabra Recibe la palabra clave a buscar
+     * @return Devuelve true si encuentra la palabra 
+     */
     @Override
     public boolean buscaPalabra(String palabra) {
         boolean aparece = false;

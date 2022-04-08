@@ -27,7 +27,11 @@ abstract public class Publicacion implements Comparable<Publicacion>{
         this.fechaPublicacion = fechaPublicacion;
     }
     
-    
+    /**
+     * Método abstracto para buscar palabras en la publicación, se implementa dependiendo del tipo de publicación
+     * @param palabra Recibe la palabra a buscar
+     * @return Devuelve true si encuentra la palabra
+     */
     abstract public boolean buscaPalabra(String palabra);
 
     /**

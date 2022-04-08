@@ -128,7 +128,7 @@ public final class Biblioteca {
             }                
         
         }catch (FileNotFoundException ex){             
-                System.out.printf("Archivo no encontrado\n");         
+                System.out.printf("Archivo no encontrado, no se cargarán publicaciones\n");         
         }catch (IOException e){
                 System.out.printf("Error lectura archivo");   
         } finally{
@@ -336,6 +336,7 @@ public final class Biblioteca {
             
         }
         
+        //Ordena las publicaciones por fecha de publicación
         Collections.sort(publicacionesEncontradas);
         return publicacionesEncontradas;
         
@@ -434,10 +435,11 @@ public final class Biblioteca {
     }
  
     public static void main(String[] args) {
-        
-        //Crea una biblioteca con las publicaciones recibidas en el archivo "publicaciones.txt"
-        Biblioteca biblio = new Biblioteca("publicaciones.txt");
         Scanner sc = new Scanner(System.in);
+        //Crea una biblioteca con las publicaciones recibidas en el archivo dado. Si el archivo no existe, se crea sin publicaciones.
+        System.out.println("Introduzca el fichero donde leer las publicaciones y cargarlas");
+        String fichero = sc.nextLine();
+        Biblioteca biblio = new Biblioteca(fichero);
         
         System.out.println("------------------------------------");
         System.out.println("--BIBLIOTECA CECILIO JIMÉNEZ RUEDA--");

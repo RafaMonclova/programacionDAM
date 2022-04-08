@@ -23,6 +23,11 @@ public class Libro extends Publicacion{
         this.descripcion = descripcion;
     }
 
+    /**
+     * Busca la palabra recibida en el titulo del libro, nombre o apellidos de alguno de los autores del libro. Si no la encuentra, la busca en la descripción
+     * @param palabra Recibe la palabra clave a buscar
+     * @return Devuelve true si encuentra la palabra 
+     */
     @Override
     public boolean buscaPalabra(String palabra) {
         boolean aparece = false;
