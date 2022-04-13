@@ -1,0 +1,2 @@
+234t;kia;5.0;rio
+678h;toyota;1.0;corola

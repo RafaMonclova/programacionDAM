@@ -110,6 +110,7 @@ Sustituír la lista actual por vehículos en fichero (pedir nombre fichero)
             System.out.println("4.Escribir la lista de vehículos en un fichero");
             System.out.println("5.Añadir vehículos del fichero a la lista");
             System.out.println("6.Sustituir la lista actual por los vehículos del fichero");
+            System.out.println("0.SALIR");
         
             System.out.println("Introduce una opción:");
             opcion = sc.nextInt();
@@ -124,6 +125,7 @@ Sustituír la lista actual por vehículos en fichero (pedir nombre fichero)
                     String marca = sc.nextLine();
                     System.out.println("Introduce tamaño del depósito");
                     double deposito = sc.nextDouble();
+                    sc.nextLine();
                     System.out.println("Introduce modelo");
                     String modelo = sc.nextLine();
                     
@@ -162,10 +164,7 @@ Sustituír la lista actual por vehículos en fichero (pedir nombre fichero)
                     System.out.println("5.Añadir vehículos del fichero a la lista");
                     System.out.println("Introduce el nombre del fichero");
                     String ficheroAñadir = sc.nextLine();
-                    vehiculos.addAll(leerVehiculos(ficheroAñadir));
-                    
-                    
-                    
+                    vehiculos.addAll(leerVehiculos(ficheroAñadir));  
                     break;
                 case 6: 
                     System.out.println("6.Sustituir la lista actual por los vehículos del fichero");
