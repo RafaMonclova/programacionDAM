@@ -37,7 +37,7 @@ public class VehiculoMain {
         while((linea = br.readLine()) != null){
             
             String [] parametros = linea.split("\\;");
-            
+            //  return matricula + ";"+ marca + ";" + tamañoDeposito + ";" + modelo;
             Vehiculo v = new Vehiculo(parametros[0],parametros[1],Double.parseDouble(parametros[2]),parametros[3]);
             vehiculos.add(v);
         }
@@ -71,7 +71,8 @@ public class VehiculoMain {
             
             for(Vehiculo v : vehiculos){
                 
-                bw.write(v.getMatricula() + ";" + v.getMarca() + ";" + v.getTamañoDeposito() + ";" + v.getModelo()+ "\n");
+               // bw.write(v.getMatricula() + ";" + v.getMarca() + ";" + v.getTamañoDeposito() + ";" + v.getModelo()+ "\n");
+                bw.write(v.toString()+"\n");
                 
             }
             

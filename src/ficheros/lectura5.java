@@ -28,36 +28,40 @@ public class lectura5 {
         int numLineas = sc.nextInt();
         String salida = "";
         BufferedReader br = null;
-        
+        int contLineas = 0;
         try {
             
             br = new BufferedReader(new FileReader(fichero));
             
             String linea;
-            int contLineas = 0;
-            while((linea = br.readLine()) != null){
+            
+            while((linea = br.readLine()) != null && numLineas > 0){
+                
+                
+                salida += linea + "\n";
+                numLineas--;
                 contLineas++;
-                salida += linea;
-                if(contLineas == numLineas){  
-                    break;
-                }
             }
             
         } catch (FileNotFoundException ex) {
-            System.out.println("Error");
+            System.err.println("Error");
         } catch (IOException ex) {
-            System.out.println("Error");
+            System.err.println("Error");
         }
         finally{
             try {
                 br.close();
             } catch (IOException ex) {
-                System.out.println("Error");
+                System.err.println("Error");
             }
         }
         
         System.out.println("SALIDA");
-        System.out.println(salida);
+        
+        if(numLineas > contLineas)
+            System.out.println("EL FICHERO ES DEMASIADO PEQUEÑO!");
+        else
+            System.out.println(salida);
         
         
         

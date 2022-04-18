@@ -1,2 +1,3 @@
-234t;kia;5.0;rio
-678h;toyota;1;corola
+5439HCN;opel;55.0;corsa
+4545UYT;kia;65.0;rio
+3421BCN;citroen;23.0;picasso

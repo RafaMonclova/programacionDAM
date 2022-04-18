@@ -63,7 +63,7 @@ public class Vehiculo {
 
     @Override
     public String toString() {
-        return matricula + ", "+ marca + ", " + tamañoDeposito + ", " + modelo;
+        return matricula + ";"+ marca + ";" + tamañoDeposito + ";" + modelo;
     }
     
     

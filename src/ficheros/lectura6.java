@@ -32,10 +32,11 @@ public class lectura6 {
             br = new BufferedReader(new FileReader(fichero));
             
             String linea;
-            
+            int contLinea = 0;
             while((linea = br.readLine()) != null){
-                
+                contLinea++;
                 if(linea.contains(palabra)){
+                    System.out.println(palabra + " aparece en la linea "+contLinea);
                     contPalabra++;
                 }
                 
@@ -54,7 +55,7 @@ public class lectura6 {
             }
         }
         
-        System.out.println("La palabra "+palabra+" aparece "+contPalabra+" veces");
+        System.out.println("TOTAL: "+contPalabra+" veces");
         
         
         

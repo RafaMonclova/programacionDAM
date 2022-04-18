@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author rafa
  */
-public class escritura4 {
+public class escritura4_copia {
     
     public static void main(String[] args) {
          
@@ -40,18 +40,16 @@ public class escritura4 {
         try {
             
             br1 = new BufferedReader(new FileReader(fichero1));
-            br2 = new BufferedReader(new FileReader(fichero2));
             pw = new PrintWriter(new FileWriter(fichero3));
             
-            String lineaPar,lineaIm;
+            String linea;
             
-            while((lineaPar = br1.readLine()) != null && (lineaIm = br2.readLine()) != null){
+            while((linea = br1.readLine()) != null){
                 
                 contLineas++;
                 if(contLineas % 2 == 0){
-                    pw.println(lineaPar);
-                } else
-                    pw.println(lineaIm);
+                    pw.println(linea);
+                }
                 
             }
             
@@ -63,13 +61,12 @@ public class escritura4 {
         finally{
             try {
                 br1.close();
-                br2.close();
             } catch (IOException ex) {
                 System.out.println("error");
             }
             pw.close();
         }
-      /*  
+        
         try {
             
             br2 = new BufferedReader(new FileReader(fichero2));
@@ -99,7 +96,7 @@ public class escritura4 {
             }
             pw.close();
         }
-        */
+        
     }
     
     
