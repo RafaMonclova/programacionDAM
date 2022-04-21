@@ -93,7 +93,7 @@ public class Tienda {
                 String[] parametros = linea.split("\\;");
                 
                 Producto p = new Producto(parametros[0],Double.parseDouble(parametros[1]));
-                
+                p.generar();
                 listaProductos.add(p);
                 
             }
