@@ -7,59 +7,69 @@ import java.util.regex.Pattern;
 public class Producto {
 
     Scanner sc = new Scanner(System.in);
-String nombre;
-int serie;
-double precio;
+private String nombre;
+private int serie;
+private double precio;
 
-Producto(){
-    nombre = "a";
+public Producto(){
+    nombre = "";
     serie = generar();
     precio = 0.0;
 }
 
-Producto(String nuevoNombre, int nuevaSerie, double nuevoPrecio){
-    nombre = nuevoNombre;
+public Producto(String nombre, double precio){
+    this.nombre = nombre;
     serie = generar();
-    precio = nuevoPrecio;
+    this.precio = precio;
     
 }
 
-int generar(){
-    int serie = (int)Math.random()*99999+1;
+public int generar(){
+    int serie = (int)(Math.random()*99999)+1;
     return serie;
 }
 
-String getNombre(){
+public String getNombre(){
     return nombre;
 }
 
-int getSerie(){
+public int getSerie(){
     return serie;
 }
 
-double getPrecio(){
+public double getPrecio(){
     return precio;
 }   
 
-void setNombre(String nuevoNombre){
-     
-    nombre = nuevoNombre;
+public void setNombre(String nombre){
+    Pattern pat = Pattern.compile("[a-zA-Z]*");
+    Matcher mat = pat.matcher(nombre);
+    
+    if(mat.matches()){
+        this.nombre = nombre;
+    }
+    else{
+        System.out.println("El nombre es inválido, vuelva a introducirlo");
+        nombre = sc.nextLine();
+        setNombre(nombre);
+    }
+    
        
 }
 
-void setPrecio(double nuevoPrecio){
-    precio = nuevoPrecio;
+public void setPrecio(double precio){
+    this.precio = precio;
 }
 
-void pedirNombre(){
+public void pedirNombre(){
     
     System.out.println("Introduzca el nombre del producto");
-    String nuevoNombre = sc.nextLine();
-    Pattern pat = Pattern.compile("[a-zA-Z]");
-    Matcher mat = pat.matcher(nuevoNombre);
+    String nombre = sc.nextLine();
+    Pattern pat = Pattern.compile("[a-zA-Z]*");
+    Matcher mat = pat.matcher(nombre);
     
     if(mat.matches()){
-        nombre = nuevoNombre;
+        this.nombre = nombre;
     }
     else{
         System.out.println("Nombre inválido, no puede contener números ni símbolos");
@@ -69,24 +79,26 @@ void pedirNombre(){
     
 }
 
-void pedirPrecio(){
+public void pedirPrecio(){
     
-    double nuevoPrecio = sc.nextDouble();
-    precio = nuevoPrecio;
+    double precio = sc.nextDouble();
+    this.precio = precio;
 }
 
 
-void resumen(){
+public void resumen(){
     
-    
+    System.out.println("INFORME DE PRODUCTO");
+    System.out.println("-----------------------");
     System.out.println("NOMBRE: "+getNombre());
     System.out.println("SERIE: "+getSerie());
     System.out.println("PRECIO: "+getPrecio());
+    System.out.println("-----------------------");
     
 }
 
 
-boolean iguales(Producto producto){
+public boolean iguales(Producto producto){
     
     if(!(producto.getNombre().equals(nombre))){
         return false;
@@ -101,7 +113,6 @@ boolean iguales(Producto producto){
     }
     
 }
-
 
 
 

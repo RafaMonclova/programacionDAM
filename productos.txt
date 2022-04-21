@@ -1,0 +1,3 @@
+lampara;10.5
+monitor;144.99
+teclado;20
