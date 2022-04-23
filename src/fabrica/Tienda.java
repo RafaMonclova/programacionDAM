@@ -92,8 +92,8 @@ public class Tienda {
                 
                 String[] parametros = linea.split("\\;");
                 
-                Producto p = new Producto(parametros[0],Double.parseDouble(parametros[1]));
-                p.generar();
+                Producto p = new Producto(parametros[0],Double.parseDouble(parametros[2]));
+                p.setSerie(Integer.parseInt(parametros[1]));
                 listaProductos.add(p);
                 
             }
@@ -131,8 +131,8 @@ public class Tienda {
                 
                 String[] parametros = linea.split("\\;");
                 
-                Producto p = new Producto(parametros[0],Double.parseDouble(parametros[1]));
-                
+                Producto p = new Producto(parametros[0],Double.parseDouble(parametros[2]));
+                p.setSerie(Integer.parseInt(parametros[1]));
                 listaNueva.add(p);
                 
             }
