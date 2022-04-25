@@ -70,7 +70,8 @@ public class Actividad2 extends JFrame implements ActionListener{
         
         if(num == Integer.parseInt(caja.getText())){      
             JOptionPane.showMessageDialog(this, "Acertaste!");  
-            
+            num = (int)(Math.random()*100)+1;//vuelve a generar el numero
+            this.setTitle("Adivina el número ("+num+")");//pone el nuevo número en el borde
         }
         else{
             if(num < Integer.parseInt(caja.getText())){

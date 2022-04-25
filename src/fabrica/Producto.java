@@ -16,9 +16,12 @@ private String nombre;
 private int serie;
 private double precio;
 
+/**
+ * Constructor por defecto de producto
+ */
 public Producto(){
     nombre = "";
-    serie = generar();
+    serie = generar();//La serie la genera el método generar()
     precio = 0.0;
 }
 
@@ -29,7 +32,7 @@ public Producto(){
  */
 public Producto(String nombre, double precio){
     setNombre(nombre); //Los métodos setNombre y setPrecio hacen la comprobación
-    serie = generar();
+    serie = generar(); //La serie la genera el método generar()
     setPrecio(precio);
     
 }
@@ -153,6 +156,11 @@ public boolean iguales(Producto producto){
     }
     
 }
+
+    @Override
+    public String toString() {
+        return "Nombre: "+nombre+", Serie: "+serie+", Precio: "+precio;
+    }
 
 
 

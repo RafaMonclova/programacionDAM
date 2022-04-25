@@ -154,6 +154,7 @@ public class Actividad3 extends JFrame implements ActionListener{
                 
                 String linea;
                 
+                //No se necesita bucle porque solo se guarda una línea
                 while((linea = br.readLine()) != null){
                     
                     String[] campos = linea.split("\\;");
