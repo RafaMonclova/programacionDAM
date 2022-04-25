@@ -15,13 +15,18 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author rafa
+ * @author RAFAEL MONCLOVA SUANO
  */
 public class Tienda {
     
     
     static ArrayList<Producto> listaProductos = new ArrayList();
     
+    /**
+     * Crea un producto con los datos recibidos y lo añade a la lista
+     * @param nombre Recibe el nombre del producto
+     * @param precio Recibe el precio del producto
+     */
     public static void añadirProducto(String nombre, double precio){
         
         Producto p = new Producto(nombre,precio);
@@ -32,6 +37,10 @@ public class Tienda {
         
     }
     
+    /**
+     * Borra un producto de la lista por su nombre
+     * @param nombre Recibe el nombre del producto a borrar
+     */
     public static void borrarProducto(String nombre){
         
         Iterator it = listaProductos.iterator();
@@ -46,6 +55,9 @@ public class Tienda {
         
     }
     
+    /**
+     * Muestra los datos de los productos registrados en la lista
+     */
     public static void mostrarProductos(){
         
         for(Producto p : listaProductos){
@@ -54,6 +66,10 @@ public class Tienda {
         
     }
     
+    /**
+     * Graba los datos de los productos registrados en un fichero
+     * @param fichero Recibe el fichero donde grabar los datos de los productos
+     */
     public static void grabarLista(String fichero){
         
         PrintWriter pw = null;
@@ -78,6 +94,10 @@ public class Tienda {
         
     }
     
+    /**
+     * Añade los productos de un fichero a la lista de productos
+     * @param fichero Recibe el fichero donde leer los datos
+     */
     public static void añadirProductosFichero(String fichero){
         
         BufferedReader br = null;
@@ -115,8 +135,13 @@ public class Tienda {
         
     }
     
+    /**
+     * Sustituye los productos registrados por los productos de un fichero
+     * @param fichero Recibe un fichero donde leer los datos
+     */
     public static void sustituirProductosFichero(String fichero){
         
+        //Se crea una lista vacía donde añadir los productos leídos
         ArrayList<Producto> listaNueva = new ArrayList();
         
         BufferedReader br = null;
@@ -137,6 +162,7 @@ public class Tienda {
                 
             }
             
+            //Se establece la lista nueva al atributo 
             listaProductos = listaNueva;
             
             System.out.println("--Se ha reemplazado la lista actual por los productos del fichero "+fichero+"--");
@@ -159,10 +185,13 @@ public class Tienda {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         
-        
+        //MENÚ
         int opcion;
         do {
             
+            System.out.println("======");
+            System.out.println("TIENDA");
+            System.out.println("======");
             System.out.println("1.Crear producto en la lista");
             System.out.println("2.Borrar producto de la lista");
             System.out.println("3.Mostrar productos");
