@@ -5,6 +5,8 @@
 package gui;
 
 import java.awt.Color;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,6 +14,12 @@ import java.awt.Color;
  */
 public class Calculadora2_0 extends javax.swing.JFrame {
 
+    ArrayList<Double> valores = new ArrayList();
+    
+    double primerValor;
+    double segundoValor;
+    String operacion;
+    double resultado;
     /**
      * Creates new form Calculadora
      */
@@ -189,6 +197,11 @@ public class Calculadora2_0 extends javax.swing.JFrame {
         jButton18.setForeground(new java.awt.Color(255, 255, 255));
         jButton18.setText("/");
         jButton18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         jButton19.setBackground(new java.awt.Color(0, 0, 0));
         jButton19.setForeground(new java.awt.Color(255, 255, 255));
@@ -325,15 +338,23 @@ public class Calculadora2_0 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
+        
+        valores.add(Double.parseDouble(jLabel1.getText()));
+        jLabel1.setText("");
+        operacion = "+";
+        
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
+        valores.add(Double.parseDouble(jLabel1.getText()));
+        jLabel1.setText("");
+        operacion = "-";
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        // TODO add your handling code here:
+        valores.add(Double.parseDouble(jLabel1.getText()));
+        jLabel1.setText("");
+        operacion = "*";
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -353,12 +374,51 @@ public class Calculadora2_0 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
+        
+        
+        valores.add(Double.parseDouble(jLabel1.getText()));
+        
+        if(operacion.equals("+")){
+            double sumatorio = 0;
+            for(double valor : valores){
+                sumatorio += valor;
+                
+            }
+            resultado = sumatorio;
+            jLabel1.setText(""+resultado);
+            
+        }
+        if(operacion.equals("-")){
+  
+            resultado = valores.get(0) - valores.get(1);
+            jLabel1.setText(""+resultado);
+        }
+        
+        if(operacion.equals("*")){
+            
+            resultado = valores.get(0) * valores.get(1);
+            jLabel1.setText(""+resultado);
+        }
+        
+        if(operacion.equals("/")){
+            
+            resultado = valores.get(0) / valores.get(1);
+            jLabel1.setText(""+resultado);
+        }
+        
+        
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         jLabel1.setText("");
+        valores.removeAll(valores);
     }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        valores.add(Double.parseDouble(jLabel1.getText()));
+        jLabel1.setText("");
+        operacion = "/";
+    }//GEN-LAST:event_jButton18ActionPerformed
 
     /**
      * @param args the command line arguments

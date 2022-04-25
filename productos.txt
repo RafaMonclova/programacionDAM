@@ -1,3 +1,3 @@
-lampara;10.5
-monitor;144.99
-teclado;20
+lampara;23434;10.5
+monitor;4564;144.99
+teclado;234235;20
