@@ -5,6 +5,9 @@
  */
 package gui;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,7 +18,7 @@ import javax.swing.JOptionPane;
  * @author alumno
  */
 public class Actividad5 extends javax.swing.JFrame {
-
+int incremento = 0;
     /**
      * Creates new form Actividad5
      */
@@ -44,16 +47,11 @@ public class Actividad5 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
 
         jLabel1.setText("NOMBRE");
 
@@ -69,6 +67,11 @@ public class Actividad5 extends javax.swing.JFrame {
         });
 
         jButton2.setText("Anterior");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Enviar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -94,18 +97,17 @@ public class Actividad5 extends javax.swing.JFrame {
                         .addComponent(jButton2)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(102, 102, 102))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1)
+                            .addComponent(jTextField2)
+                            .addComponent(jTextField3))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,21 +142,61 @@ public class Actividad5 extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        incremento++; 
+        BufferedReader br = null;
+            
+            try {
+                
+                br = new BufferedReader(new FileReader("alumnos.txt"));
+                
+                String linea;
+                
+                
+                for (int i = 0; i < incremento; i++) {
+                    
+                    linea = br.readLine();
+                    String[] campos = linea.split("\\;");
+                    
+                    
+                    jTextField1.setText(campos[0]);
+                    jTextField2.setText(campos[1]);
+                    jTextField3.setText(campos[2]);
+                    
+                }
+                         
+                
+            } catch (FileNotFoundException ex) {
+                System.out.println("Error al acceder al fichero");
+            } catch (IOException ex) {
+                System.out.println("Error de E/S");
+            }
+            finally{
+                try {
+                    br.close();
+                } catch (IOException ex) {
+                    System.out.println("Error de E/S");
+                }
+            }
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
         PrintWriter pw = null;
-        
+
             try {
             
-                pw = new PrintWriter(new FileWriter("alumnos.txt"));
-                            
-                pw.println(jTextField1.getText() +";"+ jTextField2.getText() +";"+ jTextField3.getText());
-                JOptionPane.showMessageDialog(this, "Datos enviados al fichero formulario.txt");
+                pw = new PrintWriter(new FileWriter("alumnos.txt",true));
                 
-         
+                        
+                pw.println(jTextField1.getText() +";"+ jTextField2.getText() +";"+ jTextField3.getText());
+                JOptionPane.showMessageDialog(this, "Datos enviados al fichero alumnos.txt");
+   
+                jTextField1.setText("");
+                jTextField2.setText("");
+                jTextField3.setText("");
             } catch (IOException ex) {
                 System.out.println("Error de E/S");
             }
@@ -163,6 +205,48 @@ public class Actividad5 extends javax.swing.JFrame {
             }
         
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        
+        incremento--;
+        BufferedReader br = null;
+            
+            try {
+                
+                br = new BufferedReader(new FileReader("alumnos.txt"));
+                
+                String linea;
+                
+                
+                for (int i = incremento; i > 0; i--) {
+                    
+                    linea = br.readLine();
+                    String[] campos = linea.split("\\;");
+                    
+                    
+                    jTextField1.setText(campos[0]);
+                    jTextField2.setText(campos[1]);
+                    jTextField3.setText(campos[2]);
+                    
+                }
+                         
+                
+            } catch (FileNotFoundException ex) {
+                System.out.println("Error al acceder al fichero");
+            } catch (IOException ex) {
+                System.out.println("Error de E/S");
+            }
+            finally{
+                try {
+                    br.close();
+                } catch (IOException ex) {
+                    System.out.println("Error de E/S");
+                }
+            }
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

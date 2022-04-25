@@ -32,8 +32,6 @@ public class Factura extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jLabel1.setText("FACTURA");
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {

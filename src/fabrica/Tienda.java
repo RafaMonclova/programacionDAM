@@ -21,6 +21,7 @@ public class Tienda {
     
     //La lista de productos es un atributo estático
     static ArrayList<Producto> listaProductos = new ArrayList();
+    static ArrayList<Producto> pedido = new ArrayList();
     
     /**
      * Crea un producto con los datos recibidos y lo añade a la lista
@@ -196,9 +197,9 @@ public class Tienda {
         
     }
     
-    public static double totalPrecio(){
+    public static double totalPedido(){
         double total = 0;
-        for(Producto p : listaProductos){
+        for(Producto p : pedido){
             
             total += p.getPrecio();
             
@@ -207,6 +208,42 @@ public class Tienda {
         return total;
         
     }
+    
+    public static void crearPedido(){
+        Scanner sc = new Scanner(System.in);
+           
+        
+        char opcion;
+        do {
+            System.out.println("Desea introducir un producto? s/n");
+
+            opcion = sc.next().charAt(0);
+            sc.nextLine();
+        
+            if(opcion == 's'){
+            
+                mostrarProductos();
+            
+                System.out.println("Introduzca el nombre del producto");
+                String nombre = sc.nextLine();
+            
+                for(Producto p : listaProductos){
+                
+                    if(p.getNombre().equals(nombre)){
+                        pedido.add(p);
+                        break;
+                    }
+                
+                }
+            
+            }
+        
+        
+        } while (opcion != 'n');
+        
+        System.out.println("--Pedido creado correctamente--");
+    
+}
     
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -224,7 +261,8 @@ public class Tienda {
             System.out.println("4.Grabar la lista de productos en un fichero");
             System.out.println("5.Añadir productos del fichero a la lista");
             System.out.println("6.Sustituir la lista actual por los productos del fichero");
-            System.out.println("7. FACTURA");
+            System.out.println("7.Crear pedido");
+            System.out.println("8.FACTURA");
             System.out.println("0.SALIR");
         
             System.out.println("Introduce una opción:");
@@ -270,20 +308,24 @@ public class Tienda {
                     sustituirProductosFichero(ficheroSustituir);
                     break;
                 case 7:
-                    System.out.println("7.FACTURA");
+                    System.out.println("7.Crear pedido");
+                    crearPedido();
+                    break;
+                case 8:
+                    System.out.println("8.FACTURA");
                     Factura f = new Factura();
                     f.setVisible(true);
                     
-                    String [] productos = new String[listaProductos.size()];
+                    String [] productos = new String[pedido.size()];
                     
                     for (int i = 0; i < productos.length; i++) {
                         
-                        productos[i] = listaProductos.get(i).toString();
+                        productos[i] = pedido.get(i).toString();
   
                     }
 
                     f.jList1.setListData(productos);
-                    f.jLabel2.setText("TOTAL: "+totalPrecio());
+                    f.jLabel2.setText("TOTAL: "+totalPedido());
                     break;
                 case 0:
                     System.out.println("SALIENDO...");

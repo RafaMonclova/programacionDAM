@@ -1,5 +1,7 @@
 
 package fabrica;
+import static fabrica.Tienda.listaProductos;
+import static fabrica.Tienda.mostrarProductos;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -7,106 +9,134 @@ import java.util.regex.Pattern;
 public class Pedido {
 Scanner sc = new Scanner(System.in);
     
+ArrayList<Producto> pedido = new ArrayList();
 
-Producto producto1;
-Producto producto2;
-Producto producto3;
 
-Pedido(){
-    
-    
-    producto1 = new Producto();
-    producto2 = new Producto();
-    producto3 = new Producto();
+public Pedido(){
     
 }
- 
 
-Producto getProducto1(){
-    return producto1;
+public ArrayList<Producto> getPedido() {
+    return pedido;
 }
 
-Producto getProducto2(){
-    return producto2;
+public void setPedido(ArrayList<Producto> pedido) {
+    this.pedido = pedido;
 }
 
-Producto getProducto3(){
-    return producto3;
-}
+public void crearPedido(){
+    
+    char opcion;
+    do {
+        System.out.println("Desea introducir un producto? s/n");
 
-void setProducto1(String nombre, double precio){
-    producto1.setNombre(nombre);
-    producto1.generar();
-    producto1.setPrecio(precio);
-}
-
-void setProducto2(String nombre, double precio){
-    producto2.setNombre(nombre);
-    producto2.generar();
-    producto2.setPrecio(precio);
-}
-
-void setProducto3(String nombre, double precio){
-    producto3.setNombre(nombre);
-    producto3.generar();
-    producto3.setPrecio(precio);
-}
-
-
-void pedirProducto(int producto){
-         
-        switch(producto){
+        opcion = sc.next().charAt(0);
+        sc.nextLine();
         
-        case 1:
-            System.out.println("PRODUCTO 1");
-            System.out.println("Introduce el nombre del producto: ");
-            producto1.setNombre(sc.nextLine());
-            System.out.println("Introduce el precio del producto: ");
-            producto1.setPrecio(sc.nextDouble());
-        break;
+        if(opcion == 's'){
+            
+            mostrarProductos();
+            
+            System.out.println("Introduzca el nombre del producto");
+            String nombre = sc.nextLine();
+            
+            for(Producto p : listaProductos){
+                
+                if(p.getNombre().equals(nombre)){
+                    pedido.add(p);
+                    break;
+                }
+                
+            }
+            
+        }
         
-        case 2:
-            System.out.println("PRODUCTO 2");
-            System.out.println("Introduce el nombre del producto: ");
-            producto2.setNombre(sc.nextLine());
-            System.out.println("Introduce el precio del producto: ");
-            producto2.setPrecio(sc.nextDouble());
-        break;
         
-        case 3:
-            System.out.println("PRODUCTO 3");
-            System.out.println("Introduce el nombre del producto: ");
-            producto3.setNombre(sc.nextLine());
-            System.out.println("Introduce el precio del producto: ");
-            producto3.setPrecio(sc.nextDouble());
-        break;
+    } while (opcion != 'n');
+    
+}
+
+public double total(){
+    double total = 0;
+    
+    for(Producto p : pedido){
         
-        default:
-            System.out.println("Introduce un número de producto válido (1,2,3)");
+        total += p.getPrecio();
         
     }
-          
     
+    return total;
 }
 
-double total(){
-    return producto1.getPrecio() + producto2.getPrecio() + producto3.getPrecio();
-}
-
-void mostrarPedido(){
+public void mostrarPedido(){
     
-    System.out.println("RESUMEN PRODUCTO 1: ");
-    producto1.resumen();
-    System.out.println("RESUMEN PRODUCTO 2: ");
-    producto2.resumen();
-    System.out.println("RESUMEN PRODUCTO 3: ");
-    producto3.resumen();
+    
+    for(Producto p : pedido){
+        p.resumen();
+    }
+    
     System.out.println("=============================");
     System.out.println("=============================");
     System.out.println("TOTAL: "+total());
     
     
 }  
+
+public void añadirProducto(){
+    
+    
+    
+}
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        Pedido p = new Pedido();
+        //MENÚ
+        int opcion;
+        do {
+            
+            System.out.println("======");
+            System.out.println("TIENDA");
+            System.out.println("======");
+            System.out.println("1.Añadir producto al pedido");
+            System.out.println("2.Borrar producto del pedido");
+            System.out.println("3.Mostrar productos del pedido");
+            System.out.println("4. FACTURA");
+            System.out.println("0.SALIR");
+        
+            System.out.println("Introduce una opción:");
+            opcion = sc.nextInt();
+            sc.nextLine();
+        
+            switch(opcion){
+                
+                case 1:
+                    System.out.println("1.Crear pedido");
+                    p.crearPedido();
+                    break;
+                case 2:
+                    System.out.println("2.Borrar producto del pedido");
+                    break;
+                case 3:
+                    System.out.println("3.Mostrar productos del pedido");
+                    p.mostrarPedido();
+                    break;
+                case 4:
+                    break;
+                case 0:
+                    System.out.println("SALIENDO...");
+                    break;
+                default:
+                    System.out.println("Opción inválida (1-6)");
+                    break;    
+                
+            }
+            
+        
+        } while (opcion != 0);
+        
+    }
 
 
 
