@@ -16,8 +16,8 @@ public class Calculadora2_0 extends javax.swing.JFrame {
 
     ArrayList<Double> valores = new ArrayList();
     
-    double primerValor;
-    double segundoValor;
+    //double primerValor;
+    //double segundoValor;
     String operacion;
     double resultado;
     /**
