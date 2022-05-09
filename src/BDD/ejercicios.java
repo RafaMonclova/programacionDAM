@@ -458,8 +458,10 @@ Connection connection = DriverManager.getConnection
             System.out.println("Introduce num del departamento del empleado");
             int deptno = sc.nextInt();
             String insert="INSERT INTO EMP VALUES("+empno+","+ename+","+job+","+mgr+"," +"TO_DATE("+hiredate+","+ "'DD-MM-YYYY'"+")"+","+ sal+"," +comm+"," +deptno+")";
-		 //String insert2="INSERT INTO EMP VALUES("+empno+","+ename+","+job+","+mgr+","+hiredate+","+sal+","+comm+","+deptno+")";
-			
+		          //System.out.println(insert); 
+		String insert2="INSERT INTO EMP VALUES\n" +
+                    "(7895, 'GARCIA', 'CLERK', 7902,\n" +
+                        "TO_DATE('17-12-1990', 'DD-MM-YYYY'), 1200, NULL, 20)";	
 		 try{	
 		 	 
 			 Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -488,6 +490,47 @@ Connection connection = DriverManager.getConnection
 		
 	}
 	
+        public static void insert2(){
+            Scanner sc = new Scanner(System.in);
+            
+            System.out.println("Introduce num del departamento");
+            int deptno = sc.nextInt();
+            sc.nextLine();
+            System.out.println("Introduce nombre del departamento");
+            String dname = sc.nextLine();
+            System.out.println("Introduce localización del departamento");
+            String loc = sc.nextLine();
+        
+            String insert="INSERT INTO EMP VALUES("+deptno+","+dname+","+loc+")";
+
+		 try{	
+		 	 
+			 Class.forName("oracle.jdbc.driver.OracleDriver");
+						
+			 Connection connection=DriverManager.getConnection("jdbc:oracle:thin:@delfos:1521:XE", "rafaelmosu", "uno");
+			
+			 Statement statement=connection.createStatement();
+			 
+			 
+			 try{
+			     statement.executeUpdate(insert);
+			     System.out.println("Inserción realizada");
+			 }catch(SQLException sqle){
+				 System.out.println("SQL Exception: El departamento indicado ya existe");
+			 }
+			 
+			 statement.close();
+			 connection.close();
+			 	 
+						
+		 }catch(ClassNotFoundException cnfe){  
+				System.out.printf("Not found the jdbc driver %s\n", driver);
+		 }catch (SQLException sqle){
+				System.out.println("SQL Exception");
+		 }	
+		
+	}
+        
 	public static void statementDeleteExample()
 	{
 		 String delete="DELETE FROM departamentos WHERE dept_no =60";
