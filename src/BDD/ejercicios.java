@@ -71,6 +71,9 @@ public class ejercicios {
                     System.out.println("6. Por cada departamento mostrar el nombre y salario del empleado que menos gane");
                     System.out.println("7. Muestra los datos del empleado con el número introducido");
                     System.out.println("8. INSERT 1");
+                    System.out.println("9. INSERT 2");
+                    System.out.println("10. DELETE 1");
+                    System.out.println("11. ACTUALIZAR O INSERTAR");
                     System.out.println("0. SALIR");
                     System.out.println("Introduce opción:");
                     opcion = sc.nextInt();
@@ -108,6 +111,18 @@ public class ejercicios {
                         case 8:
                             System.out.println("--INSERT 1-- \n");
                             insert1();
+                            break;  
+                        case 9:
+                            System.out.println("--INSERT 2-- \n");
+                            insert2();
+                            break;  
+                        case 10:
+                            System.out.println("--DELETE 1-- \n");
+                            delete1();
+                            break;  
+                        case 11:
+                            System.out.println("--ACTUALIZAR O INSERTAR -- \n");
+                            ejer10();
                             break;     
                         case 0:
                             System.out.println("SALIENDO...");
@@ -120,12 +135,7 @@ public class ejercicios {
                 
                 } while (opcion != 0);
 
-                
-                
-		//Consultas DML - statement
-		 // statementInsertExample();
-		 // statementDeleteExample();
-		 // statementUpdateExample();
+
 
 	}
 	
@@ -143,7 +153,7 @@ public class ejercicios {
             Class.forName("oracle.jdbc.driver.OracleDriver");
 
 
-Connection connection = DriverManager.getConnection
+            Connection connection = DriverManager.getConnection
                   ("jdbc:oracle:thin:@delfos:1521:XE", "rafaelmosu", "uno");
 
 	     
@@ -457,11 +467,8 @@ Connection connection = DriverManager.getConnection
             double comm = sc.nextDouble();
             System.out.println("Introduce num del departamento del empleado");
             int deptno = sc.nextInt();
-            String insert="INSERT INTO EMP VALUES("+empno+","+ename+","+job+","+mgr+"," +"TO_DATE("+hiredate+","+ "'DD-MM-YYYY'"+")"+","+ sal+"," +comm+"," +deptno+")";
-		          //System.out.println(insert); 
-		String insert2="INSERT INTO EMP VALUES\n" +
-                    "(7895, 'GARCIA', 'CLERK', 7902,\n" +
-                        "TO_DATE('17-12-1990', 'DD-MM-YYYY'), 1200, NULL, 20)";	
+            String insert="INSERT INTO EMP VALUES("+empno+",'"+ename+"','"+job+"',"+mgr+"," +"TO_DATE("+"'"+hiredate+"'"+","+ "'DD-MM-YYYY'"+")"+","+ sal+"," +comm+"," +deptno+")";
+           
 		 try{	
 		 	 
 			 Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -475,7 +482,7 @@ Connection connection = DriverManager.getConnection
 			     statement.executeUpdate(insert);
 			     System.out.println("Inserción realizada");
 			 }catch(SQLException sqle){
-				 System.out.println("SQL Exception: El empleado indicado ya existe");
+				 System.out.println("SQL Exception");
 			 }
 			 
 			 statement.close();
@@ -486,6 +493,7 @@ Connection connection = DriverManager.getConnection
 				System.out.printf("Not found the jdbc driver %s\n", driver);
 		 }catch (SQLException sqle){
 				System.out.println("SQL Exception");
+                                sqle.printStackTrace();
 		 }	
 		
 	}
@@ -501,8 +509,8 @@ Connection connection = DriverManager.getConnection
             System.out.println("Introduce localización del departamento");
             String loc = sc.nextLine();
         
-            String insert="INSERT INTO EMP VALUES("+deptno+","+dname+","+loc+")";
-
+            String insert="INSERT INTO DEPT VALUES("+deptno+","+"'"+dname+"'"+","+"'"+loc+"'"+")";
+            System.out.println(insert);
 		 try{	
 		 	 
 			 Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -537,10 +545,10 @@ Connection connection = DriverManager.getConnection
 			
 		 try{	
 		 	 //Load the driver in RAM
-			 Class.forName(driver);
+			 Class.forName("oracle.jdbc.driver.OracleDriver");
 						
 		     //Connect to DB
-			 Connection connection=DriverManager.getConnection(url,user,password);
+			 Connection connection=DriverManager.getConnection("jdbc:oracle:thin:@delfos:1521:XE", "rafaelmosu", "uno");
 			// Connection connection=DriverManager.getConnection(url);
 			 //Create statement and execute query, to obtain a 'ResultSet'
 			 Statement statement=connection.createStatement();
@@ -564,19 +572,127 @@ Connection connection = DriverManager.getConnection
 				System.out.println("SQL Exception");
 		 }
 	}
+        
+        public static void delete1()
+	{
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Introduce el número del empleado");
+            int empno = sc.nextInt();
+            String delete="DELETE FROM EMP WHERE EMPNO ="+empno;
+			
+		 try{	
+		 	 
+			 Class.forName("oracle.jdbc.driver.OracleDriver");
+						
+		     
+			 Connection connection=DriverManager.getConnection("jdbc:oracle:thin:@delfos:1521:XE", "rafaelmosu", "uno");
+			
+			 Statement statement=connection.createStatement();
+			 
+			 
+			 try{
+			     statement.executeUpdate(delete);
+			     System.out.println("Borrado realizado");
+			 }catch(SQLException sqle){
+				 System.out.println("SQL Exception: El departamento indicado ya existe");
+			 }
+			 
+			 statement.close();
+			 connection.close();
+			 
+			 
+						
+		 }catch(ClassNotFoundException cnfe){  
+				System.out.printf("Not found the jdbc driver %s\n", driver);
+		 }catch (SQLException sqle){
+				System.out.println("SQL Exception");
+		 }
+	}
+        
+        public static void ejer10()
+	{
+            Scanner sc = new Scanner(System.in);
+            
+            System.out.println("Introduce num del empleado");
+            int empno = sc.nextInt();
+            sc.nextLine();
+            System.out.println("Introduce nombre del empleado");
+            String ename = sc.nextLine();
+            System.out.println("Introduce job del empleado");
+            String job = sc.nextLine();
+            System.out.println("Introduce mgr del empleado");
+            int mgr = sc.nextInt();
+            sc.nextLine();
+            System.out.println("Introduce fecha de alta del empleado");
+            String hiredate = sc.nextLine();
+            System.out.println("Introduce salario del empleado");
+            double sal = sc.nextDouble();
+            System.out.println("Introduce comisión empleado");
+            double comm = sc.nextDouble();
+            System.out.println("Introduce num del departamento del empleado");
+            int deptno = sc.nextInt();
+            
+            String consulta = "SELECT EMPNO FROM EMP WHERE EMPNO="+empno;
+            String update = "UPDATE EMP SET ENAME='"+ename+"',"+"JOB='"+job+"',"+"MGR="+mgr+","+"HIREDATE=TO_DATE('"+hiredate+"',"+"'DD-MM-YYYY')"+","+"SAL="+sal+","+"COMM="+comm+","+"DEPTNO="+deptno+"WHERE EMPNO="+empno;
+            String insert="INSERT INTO EMP VALUES("+empno+",'"+ename+"','"+job+"',"+mgr+"," +"TO_DATE("+"'"+hiredate+"'"+","+ "'DD-MM-YYYY'"+")"+","+ sal+"," +comm+"," +deptno+")";
+			
+		 try{	
+		 	 
+			 Class.forName("oracle.jdbc.driver.OracleDriver");
+						
+		     
+			 Connection connection=DriverManager.getConnection("jdbc:oracle:thin:@delfos:1521:XE", "rafaelmosu", "uno");
+			
+			Statement statement=connection.createStatement();
+                        ResultSet result=statement.executeQuery(consulta);
+			if(result.next()){
+			 
+                            //System.out.println(result.getInt(1));
+                            try{
+			     statement.executeUpdate(update);
+			     System.out.println("Actualización realizada");
+                            }catch(SQLException sqle){
+				 System.out.println("SQL Exception");
+                            }
+                            
+                        }
+                        else{
+                            
+                            try{
+			     statement.executeUpdate(insert);
+			     System.out.println("Inserción realizada");
+                            }catch(SQLException sqle){
+				 System.out.println("SQL Exception");
+			 }
+                            
+                        }
+			                  
+			 
+		 
+		 result.close(); 
+		 statement.close();
+		 connection.close();
+			 
+			 
+						
+		 }catch(ClassNotFoundException cnfe){  
+				System.out.printf("Not found the jdbc driver %s\n", driver);
+		 }catch (SQLException sqle){
+				System.out.println("SQL Exception");
+		 }
+	}
 	
 	public static void statementUpdateExample()
 	{
 		 String update="UPDATE departamentos SET loc='CADIZ' WHERE trim(loc) ='BARCELONA'";
 			
 		 try{	
-		 	 //Load the driver in RAM
-			 Class.forName(driver);
+		 	 
+			 Class.forName("oracle.jdbc.driver.OracleDriver");
 						
-		     //Connect to DB
-			 Connection connection=DriverManager.getConnection(url,user,password);
-			// Connection connection=DriverManager.getConnection(url);
-			 //Create statement and execute query, to obtain a 'ResultSet'
+		     
+			 Connection connection=DriverManager.getConnection("jdbc:oracle:thin:@delfos:1521:XE", "rafaelmosu", "uno");
+			
 			 Statement statement=connection.createStatement();
 			 
 			 
@@ -587,8 +703,8 @@ Connection connection = DriverManager.getConnection
 				 System.out.println("SQL Exception: El departamento indicado ya existe");
 			 }
 			 
-			 statement.close();//close Statement
-			 connection.close();//close Connection
+			 statement.close();
+			 connection.close();
 			 
 			 
 						
