@@ -1,3 +1,4 @@
-lampara;23434;10.5
-monitor;4564;144.99
-teclado;234235;20
+lamparaaaa;23434;10.5
+monitoraa;4564;144.99
+tecladoasas;234235;20.0
+movil;81551;450.0
